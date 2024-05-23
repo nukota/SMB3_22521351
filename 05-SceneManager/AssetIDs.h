@@ -1,12 +1,13 @@
 #pragma once
 
 //
-// This file contains all IDs of game assets 
+// This file contains all IDs of game assets x
 //
 
 #define ID_TEX_MARIO 0
 #define ID_TEX_ENEMY 10
 #define ID_TEX_MISC 20
+#define ID_TEX_NATURE 30
 
 
 #define OBJECT_TYPE_MARIO	0
@@ -15,6 +16,8 @@
 #define OBJECT_TYPE_KOOPAS	3
 #define OBJECT_TYPE_COIN 4
 #define OBJECT_TYPE_PLATFORM 5
+#define OBJECT_TYPE_GROUND 6
+#define OBJECT_TYPE_MYSTERYBOX 7
 
 #define OBJECT_TYPE_PORTAL	50
 
@@ -90,3 +93,6 @@
 #define ID_SPRITE_CLOUD_BEGIN (ID_SPRITE_CLOUD+1000)
 #define ID_SPRITE_CLOUD_MIDDLE (ID_SPRITE_CLOUD+2000)
 #define ID_SPRITE_CLOUD_END (ID_SPRITE_CLOUD+3000)
+
+#define ID_SPRITE_GROUND 60000
+#define ID_SPRITE_MYSTERYBOX 70000 
