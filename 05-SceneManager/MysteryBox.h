@@ -5,6 +5,7 @@
 #include "Animations.h"
 
 #define ID_ANI_MYSTERYBOX 12000
+
 #define MYSTERYBOX_WIDTH 16
 #define MYSTERYBOX_BBOX_WIDTH 16
 #define MYSTERYBOX_BBOX_HEIGHT 16
