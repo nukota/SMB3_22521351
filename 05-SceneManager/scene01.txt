@@ -4,17 +4,19 @@ mario.txt
 brick.txt
 coin.txt
 goomba.txt
-cloud.txt
 ground.txt
 mysterybox.txt
 bush.txt
-tree.txt
+tree1.txt
+tree2.txt
+tree3.txt
 warppipe.txt
+#cloud.txt
 #
 [OBJECTS]
 # type	x	y	extra_settings per object type
-# type: 0 = Mario , 1 = Brick, 2 = Goomba, 3 = Koopas, 4 = Coin, 5 = Platform
-#	6 = Ground, 7 = MysteryBox, 8 = Bush, 9 = Tree, 10 = WarpPipe       
+# type: 0 = Mario , 1 = Brick, 2 = Goomba, 3 = Koopas, 4 = Coin, 5 = Platform, 6 = Ground
+#	7 = MysteryBox, 8 = Bush, 9 = Tree1, 10 = Tree2, 11 = Tree3, 12 = WarpPipe, 13 = Cloud       
 # See OBJECT_TYPE constants in AssetIDs.h
 
 
@@ -85,7 +87,7 @@ warppipe.txt
 7	256 	80
 
 #WarpPipe
-10	355	172
+12	390	172
 
 #Goomba
 2	300	10

@@ -121,9 +121,12 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_GROUND: obj = new CGround(x, y); break;
 	case OBJECT_TYPE_COIN: obj = new CCoin(x, y); break;
 	case OBJECT_TYPE_MYSTERYBOX: obj = new CMysteryBox(x, y); break;
-	case OBJECT_TYPE_TREE: obj = new CTree(x, y); break;
+	case OBJECT_TYPE_TREE1: obj = new CTree1(x, y); break;
+	case OBJECT_TYPE_TREE2: obj = new CTree2(x, y); break;
+	case OBJECT_TYPE_TREE3: obj = new CTree3(x, y); break;
 	case OBJECT_TYPE_BUSH: obj = new CBush(x, y); break;
 	case OBJECT_TYPE_WARPPIPE: obj = new CWarpPipe(x, y); break;
+	case OBJECT_TYPE_CLOUD: obj = new CCloud(x, y); break;
 
 	case OBJECT_TYPE_PLATFORM:
 	{

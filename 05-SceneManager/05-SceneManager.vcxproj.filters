@@ -90,10 +90,19 @@
     <ClCompile Include="WarpPipe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tree.cpp">
+    <ClCompile Include="Tree1.cpp">
       <Filter>Source Files\BackGroundObjects</Filter>
     </ClCompile>
     <ClCompile Include="Bush.cpp">
+      <Filter>Source Files\BackGroundObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree2.cpp">
+      <Filter>Source Files\BackGroundObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree3.cpp">
+      <Filter>Source Files\BackGroundObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Cloud.cpp">
       <Filter>Source Files\BackGroundObjects</Filter>
     </ClCompile>
   </ItemGroup>
@@ -179,7 +188,16 @@
     <ClInclude Include="Bush.h">
       <Filter>Header Files\BackGroundObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Tree.h">
+    <ClInclude Include="Tree1.h">
+      <Filter>Header Files\BackGroundObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Cloud.h">
+      <Filter>Header Files\BackGroundObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree2.h">
+      <Filter>Header Files\BackGroundObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree3.h">
       <Filter>Header Files\BackGroundObjects</Filter>
     </ClInclude>
   </ItemGroup>

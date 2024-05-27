@@ -9,8 +9,11 @@
 #include "Ground.h"
 #include "MysteryBox.h"
 #include "Bush.h"
-#include "Tree.h"
+#include "Tree1.h"
+#include "Tree2.h"
+#include "Tree3.h"
 #include "WarpPipe.h"
+#include "Cloud.h"
 //#include "Koopas.h"
 
 
