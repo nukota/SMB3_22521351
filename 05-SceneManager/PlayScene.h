@@ -6,7 +6,6 @@
 #include "Brick.h"
 #include "Mario.h"
 #include "Goomba.h"
-#include "Ground.h"
 #include "MysteryBox.h"
 #include "Bush.h"
 #include "Tree1.h"
