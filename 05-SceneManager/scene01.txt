@@ -17,11 +17,17 @@ warppipe.txt
 #	6 = Ground, 7 = MysteryBox, 8 = Bush, 9 = Tree, 10 = WarpPipe       
 # See OBJECT_TYPE constants in AssetIDs.h
 
+
+#Bush
+8	173	181
+8	190	181
+8	207	181
+
+#Tree
+9	80	157
+
 # MARIO
 0	20	10
-
-#Goomba
-2	300	10
 
 # GROUND
 6	0	196
@@ -78,13 +84,8 @@ warppipe.txt
 7	240 	80
 7	256 	80
 
-#Bush
-8	173	181
-8	190	181
-8	207	181
-
-#Tree
-9	80	157
-
 #WarpPipe
 10	355	172
+
+#Goomba
+2	300	10
