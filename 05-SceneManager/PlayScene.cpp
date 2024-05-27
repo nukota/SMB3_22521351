@@ -127,6 +127,16 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_BUSH: obj = new CBush(x, y); break;
 	case OBJECT_TYPE_WARPPIPE: obj = new CWarpPipe(x, y); break;
 	case OBJECT_TYPE_CLOUD: obj = new CCloud(x, y); break;
+	case OBJECT_TYPE_STAIR0: obj = new CStair0(x, y); break;
+	case OBJECT_TYPE_STAIR1: obj = new CStair1(x, y); break;
+	case OBJECT_TYPE_STAIR2: obj = new CStair2(x, y); break;
+	case OBJECT_TYPE_STAIR3: obj = new CStair3(x, y); break;
+	case OBJECT_TYPE_STAIR4: obj = new CStair4(x, y); break;
+	case OBJECT_TYPE_STAIR5: obj = new CStair5(x, y); break;
+	case OBJECT_TYPE_STAIR6: obj = new CStair6(x, y); break;
+	case OBJECT_TYPE_STAIR7: obj = new CStair7(x, y); break;
+	case OBJECT_TYPE_STAIR8: obj = new CStair8(x, y); break;
+	case OBJECT_TYPE_STAIR9: obj = new CStair9(x, y); break;
 
 	case OBJECT_TYPE_PLATFORM:
 	{

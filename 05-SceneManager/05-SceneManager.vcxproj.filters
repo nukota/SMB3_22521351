@@ -19,6 +19,12 @@
     <Filter Include="Source Files\BackGroundObjects">
       <UniqueIdentifier>{70000431-756b-45ef-9717-991f31e74370}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Stairs">
+      <UniqueIdentifier>{c56eacbe-7439-47b2-bcea-445c1dab59d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Stairs">
+      <UniqueIdentifier>{3d50892c-57e4-44dd-958e-03a5c3a543d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -104,6 +110,36 @@
     </ClCompile>
     <ClCompile Include="Cloud.cpp">
       <Filter>Source Files\BackGroundObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Stair0.cpp">
+      <Filter>Source Files\Stairs</Filter>
+    </ClCompile>
+    <ClCompile Include="Stair1.cpp">
+      <Filter>Source Files\Stairs</Filter>
+    </ClCompile>
+    <ClCompile Include="Stair2.cpp">
+      <Filter>Source Files\Stairs</Filter>
+    </ClCompile>
+    <ClCompile Include="Stair3.cpp">
+      <Filter>Source Files\Stairs</Filter>
+    </ClCompile>
+    <ClCompile Include="Stair4.cpp">
+      <Filter>Source Files\Stairs</Filter>
+    </ClCompile>
+    <ClCompile Include="Stair5.cpp">
+      <Filter>Source Files\Stairs</Filter>
+    </ClCompile>
+    <ClCompile Include="Stair7.cpp">
+      <Filter>Source Files\Stairs</Filter>
+    </ClCompile>
+    <ClCompile Include="Stair6.cpp">
+      <Filter>Source Files\Stairs</Filter>
+    </ClCompile>
+    <ClCompile Include="Stair8.cpp">
+      <Filter>Source Files\Stairs</Filter>
+    </ClCompile>
+    <ClCompile Include="Stair9.cpp">
+      <Filter>Source Files\Stairs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +235,36 @@
     </ClInclude>
     <ClInclude Include="Tree3.h">
       <Filter>Header Files\BackGroundObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Stair1.h">
+      <Filter>Header Files\Stairs</Filter>
+    </ClInclude>
+    <ClInclude Include="Stair2.h">
+      <Filter>Header Files\Stairs</Filter>
+    </ClInclude>
+    <ClInclude Include="Stair3.h">
+      <Filter>Header Files\Stairs</Filter>
+    </ClInclude>
+    <ClInclude Include="Stair4.h">
+      <Filter>Header Files\Stairs</Filter>
+    </ClInclude>
+    <ClInclude Include="Stair5.h">
+      <Filter>Header Files\Stairs</Filter>
+    </ClInclude>
+    <ClInclude Include="Stair6.h">
+      <Filter>Header Files\Stairs</Filter>
+    </ClInclude>
+    <ClInclude Include="Stair7.h">
+      <Filter>Header Files\Stairs</Filter>
+    </ClInclude>
+    <ClInclude Include="Stair8.h">
+      <Filter>Header Files\Stairs</Filter>
+    </ClInclude>
+    <ClInclude Include="Stair9.h">
+      <Filter>Header Files\Stairs</Filter>
+    </ClInclude>
+    <ClInclude Include="Stair0.h">
+      <Filter>Header Files\Stairs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

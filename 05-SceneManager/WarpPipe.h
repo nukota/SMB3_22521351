@@ -7,7 +7,7 @@
 #define ID_ANI_WARPPIPE 18000
 #define WARPPIPE_WIDTH 32
 #define WARPPIPE_BBOX_WIDTH 32
-#define WARPPIPE_BBOX_HEIGHT 32
+#define WARPPIPE_BBOX_HEIGHT 46
 
 class CWarpPipe : public CGameObject {
 public:
