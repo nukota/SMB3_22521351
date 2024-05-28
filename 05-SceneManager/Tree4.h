@@ -4,14 +4,14 @@
 #include "Animation.h"
 #include "Animations.h"
 
-#define ID_ANI_STAIR9 29000
-#define STAIR9_WIDTH 48
-#define STAIR9_BBOX_WIDTH 48
-#define STAIR9_BBOX_HEIGHT 144
+#define ID_ANI_TREE4 18000
+#define TREE4_WIDTH 96
+#define TREE4_BBOX_WIDTH 96
+#define TREE4_BBOX_HEIGHT 130
 
-class CStair9 : public CGameObject {
+class CTree4 : public CGameObject {
 public:
-	CStair9(float x, float y) : CGameObject(x, y) {}
+	CTree4(float x, float y) : CGameObject(x, y) {}
 	void Render();
 	void Update(DWORD dt) {}
 	void GetBoundingBox(float& l, float& t, float& r, float& b);

@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Animations.cpp" />
+    <ClCompile Include="BlackBackground.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Bush.cpp" />
     <ClCompile Include="Cloud.cpp" />
@@ -162,6 +163,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mario.cpp" />
     <ClCompile Include="MysteryBox.cpp" />
+    <ClCompile Include="PipeAbove.cpp" />
+    <ClCompile Include="PipeBelow.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Portal.cpp" />
@@ -182,14 +185,17 @@
     <ClCompile Include="Tree1.cpp" />
     <ClCompile Include="Tree2.cpp" />
     <ClCompile Include="Tree3.cpp" />
+    <ClCompile Include="Tree4.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="WarpPipe.cpp" />
+    <ClCompile Include="Wood.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationFrame.h" />
     <ClInclude Include="Animations.h" />
     <ClInclude Include="AssetIDs.h" />
+    <ClInclude Include="BlackBackground.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="Bush.h" />
     <ClInclude Include="Cloud.h" />
@@ -203,6 +209,8 @@
     <ClInclude Include="KeyEventHandler.h" />
     <ClInclude Include="Mario.h" />
     <ClInclude Include="MysteryBox.h" />
+    <ClInclude Include="PipeAbove.h" />
+    <ClInclude Include="PipeBelow.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="Portal.h" />
@@ -225,8 +233,10 @@
     <ClInclude Include="Tree1.h" />
     <ClInclude Include="Tree2.h" />
     <ClInclude Include="Tree3.h" />
+    <ClInclude Include="Tree4.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="WarpPipe.h" />
+    <ClInclude Include="Wood.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

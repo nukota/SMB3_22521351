@@ -11,6 +11,7 @@
 #include "Tree1.h"
 #include "Tree2.h"
 #include "Tree3.h"
+#include "Tree4.h"
 #include "WarpPipe.h"
 #include "Cloud.h"
 #include "Stair0.h"
@@ -23,6 +24,10 @@
 #include "Stair7.h"
 #include "Stair8.h"
 #include "Stair9.h"
+#include "Wood.h"
+#include "PipeBelow.h"
+#include "PipeAbove.h"
+#include "BlackBackground.h"
 //#include "Koopas.h"
 
 

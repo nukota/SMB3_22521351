@@ -4,7 +4,7 @@
 #include "Animation.h"
 #include "Animations.h"
 
-#define ID_ANI_WARPPIPE 18000
+#define ID_ANI_WARPPIPE 33000
 #define WARPPIPE_WIDTH 32
 #define WARPPIPE_BBOX_WIDTH 32
 #define WARPPIPE_BBOX_HEIGHT 46

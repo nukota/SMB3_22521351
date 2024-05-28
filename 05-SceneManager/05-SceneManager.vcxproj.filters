@@ -141,6 +141,21 @@
     <ClCompile Include="Stair9.cpp">
       <Filter>Source Files\Stairs</Filter>
     </ClCompile>
+    <ClCompile Include="Wood.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PipeBelow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PipeAbove.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree4.cpp">
+      <Filter>Source Files\BackGroundObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="BlackBackground.cpp">
+      <Filter>Source Files\BackGroundObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -265,6 +280,21 @@
     </ClInclude>
     <ClInclude Include="Stair0.h">
       <Filter>Header Files\Stairs</Filter>
+    </ClInclude>
+    <ClInclude Include="Wood.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PipeBelow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PipeAbove.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree4.h">
+      <Filter>Header Files\BackGroundObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="BlackBackground.h">
+      <Filter>Header Files\BackGroundObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
