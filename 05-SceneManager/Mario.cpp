@@ -37,6 +37,12 @@ void CMario::OnNoCollision(DWORD dt)
 
 void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 {
+	if (e->ny < 0 && e->obj->IsStair())
+	{
+		vy = 0;
+		isOnPlatform = true;
+	}
+	else
 	if (e->ny != 0 && e->obj->IsBlocking())
 	{
 		vy = 0;
@@ -101,6 +107,7 @@ void CMario::OnCollisionWithPortal(LPCOLLISIONEVENT e)
 	CPortal* p = (CPortal*)e->obj;
 	CGame::GetInstance()->InitiateSwitchScene(p->GetSceneId());
 }
+
 
 //
 // Get animation ID for small Mario

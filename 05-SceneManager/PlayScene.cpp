@@ -142,6 +142,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_PIPEBELOW: obj = new CPipeBelow(x, y); break;
 	case OBJECT_TYPE_PIPEABOVE: obj = new CPipeAbove(x, y); break;
 	case OBJECT_TYPE_BLACKBACKGROUND: obj = new CBlackBackground(x, y); break;
+	case OBJECT_TYPE_PRIZE: obj = new CPrize(x, y); break;
 
 	case OBJECT_TYPE_PLATFORM:
 	{

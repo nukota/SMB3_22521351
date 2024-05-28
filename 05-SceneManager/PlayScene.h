@@ -28,6 +28,7 @@
 #include "PipeBelow.h"
 #include "PipeAbove.h"
 #include "BlackBackground.h"
+#include "Prize.h"
 //#include "Koopas.h"
 
 
