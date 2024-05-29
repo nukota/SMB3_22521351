@@ -4,8 +4,11 @@
 void CCoinFromBox::Render()
 {
 	CAnimations* animations = CAnimations::GetInstance();
-	animations->Get(ID_ANI_COINFROMBOX)->Render(x, y);
-	
+	animations->Get(ID_ANI_COINFROMBOX)->Render(x, y - 16);
+	if (!setAppear) {
+		appear = GetTickCount64();
+		setAppear = true;
+	}
 	//RenderBoundingBox();
 }
 
@@ -21,7 +24,7 @@ void CCoinFromBox::GetBoundingBox(float& l, float& t, float& r, float& b)
 void CCoinFromBox::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	if (!isDeleted) {
-		vy = -0.35f; y += vy * dt;
+		vy = -0.32f; y += vy * dt;
 		if ((GetTickCount64() - appear) > 200)
 		{
 			y = 0;

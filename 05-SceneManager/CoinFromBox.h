@@ -12,7 +12,8 @@
 
 class CCoinFromBox : public CGameObject {
 protected:
-	ULONGLONG appear = GetTickCount64();
+	bool setAppear = false;
+	ULONGLONG appear;
 	virtual void Render();
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
 	virtual void GetBoundingBox(float& l, float& t, float& r, float& b);

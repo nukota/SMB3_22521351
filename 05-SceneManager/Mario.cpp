@@ -8,6 +8,7 @@
 #include "Coin.h"
 #include "Portal.h"
 #include "MysteryBox.h"
+#include "MushRoom.h"
 
 #include "Collision.h"
 
@@ -63,6 +64,8 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithPortal(e);
 	else if (dynamic_cast<CMysteryBox*>(e->obj))
 		OnCollisionWithMysteryBox(e);
+	else if (dynamic_cast<CMushRoom*>(e->obj))
+		OnCollisionWithMushRoom(e);
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
@@ -116,6 +119,16 @@ void CMario::OnCollisionWithMysteryBox(LPCOLLISIONEVENT e)
 	CMysteryBox* mysterybox = (CMysteryBox*)(e->obj);
 	if (e->ny > 0 && mysterybox->GetState() == MYSTERYBOX_STATE_FIRST) {
 		mysterybox->SetState(MYSTERYBOX_STATE_TAKEN);
+	}
+}
+
+void CMario::OnCollisionWithMushRoom(LPCOLLISIONEVENT e) 
+{
+	e->obj->Delete();
+	if (level == MARIO_LEVEL_SMALL)
+	{
+		level = MARIO_LEVEL_BIG;
+		StartUntouchable();
 	}
 }
 

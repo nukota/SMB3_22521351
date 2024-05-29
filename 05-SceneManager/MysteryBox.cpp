@@ -6,7 +6,12 @@
 
 CMysteryBox::CMysteryBox(float x, float y, int prize) : CGameObject(x, y) {
 	if (prize == 1) {
-		obj = new CCoinFromBox(x, y);
+		subObject = new CCoinFromBox(x, y);
+		subObject->SetPosition(x, y - 16);
+	}
+	else if (prize == 2) {
+		subObject = new CMushRoom(x, y);
+		//subObject->SetPosition(x, y - 16);
 	}
 	taken_start = -1;
 	SetState(MYSTERYBOX_STATE_FIRST);
@@ -42,7 +47,6 @@ void CMysteryBox::SetState(int state)
 		break;
 	case MYSTERYBOX_STATE_TAKEN:
 		taken_start = GetTickCount64();
-		subObject = new CCoinFromBox(x, y);
 		CreateSubObject = true;
 		break;
 	}

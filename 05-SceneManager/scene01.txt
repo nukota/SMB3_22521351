@@ -29,6 +29,7 @@ pipeabove.txt
 blackbackground.txt
 prize.txt
 coinfrombox.txt
+mushroom.txt
 
 #
 [OBJECTS]
@@ -95,10 +96,10 @@ coinfrombox.txt
 7	206 	130
 
 7	240 	80
-7	256 	80
+35	256 	80
 
 7	696	164
-7	744	132
+35	744	132
 
 7	1509 	152
 

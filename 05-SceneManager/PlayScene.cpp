@@ -292,7 +292,6 @@ void CPlayScene::Update(DWORD dt)
 		if (objects[i]->CreateSubObject) {
 			CGameObject* obj = NULL;
 			obj = objects[i]->subObject;
-			obj->SetPosition(objects[i]->x, objects[i]->y);
 			objects.push_back(obj);
 			Render();
 			objects[i]->CreateSubObject = false;
