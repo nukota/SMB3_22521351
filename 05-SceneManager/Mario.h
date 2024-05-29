@@ -120,6 +120,9 @@ class CMario : public CGameObject
 	void OnCollisionWithStair(LPCOLLISIONEVENT e);
 	void OnCollisionWithMysteryBox(LPCOLLISIONEVENT e);
 	void OnCollisionWithMushRoom(LPCOLLISIONEVENT e);
+	void OnCollisionWithKoopas(LPCOLLISIONEVENT e);
+	void OnCollisionWithWingGoomba(LPCOLLISIONEVENT e);
+	void OnCollisionWithWingKoopas(LPCOLLISIONEVENT e);
 
 	int GetAniIdBig();
 	int GetAniIdSmall();
