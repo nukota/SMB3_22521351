@@ -19,6 +19,8 @@ class CPakkun1 : public CGameObject
 protected:
 
 	ULONGLONG chargetime, risetime;
+	float y0;
+	bool settime = false;
 
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);

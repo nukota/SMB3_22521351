@@ -4,7 +4,6 @@
 CPakkun1::CPakkun1(float x, float y) :CGameObject(x, y)
 {
 	SetState(PAKKUN1_STATE_TOPLEFT);
-	//risetime = 0;
 }
 
 void CPakkun1::GetBoundingBox(float& left, float& top, float& right, float& bottom)
@@ -17,19 +16,25 @@ void CPakkun1::GetBoundingBox(float& left, float& top, float& right, float& bott
 
 void CPakkun1::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
-	/*if (risetime > 6000) {
-		Fall();
-		risetime = 0;
-	}
-	else if (risetime > 4000) {
-		Shoot();
-	}
-	else if (risetime > 2000) {
+	x += vx * dt;
+	y += vy * dt;
+	risetime += dt;
+	if (risetime < 2000) {
+		DebugOut(L"rise %f\n",y0);
 		Rise();
 	}
-	else risetime += dt;
+	else if (risetime < 4000) {
+		DebugOut(L"shoot\n");
+		Shoot();
+	}
+	else if (risetime < 9000) {
+		DebugOut(L"fall\n");
+		Fall();
+	}
+	else risetime = 0;
+	
 	CGameObject::Update(dt, coObjects);
-	CCollision::GetInstance()->Process(this, dt, coObjects);*/
+	CCollision::GetInstance()->Process(this, dt, coObjects);
 }
 
 
@@ -52,7 +57,13 @@ void CPakkun1::Render()
 	{
 		aniId = ID_ANI_PAKKUN1_BOTRIGHT;
 	}
+	if (!settime) {
+		y0 = 156;
+		risetime = 0;
+		settime = true;
+	}
 	CAnimations::GetInstance()->Get(aniId)->Render(x, y);
+	
 	//RenderBoundingBox();
 }
 
@@ -62,11 +73,22 @@ void CPakkun1::SetState(int state)
 }
 
 void CPakkun1::Rise() {
-
+	if (y < y0 - PAKKUN1_BBOX_HEIGHT) {
+		y = y0 - PAKKUN1_BBOX_HEIGHT;
+		vy = 0;
+	}
+	else
+		vy = -0.016f;
 }
 void CPakkun1::Fall() {
-
+	if (y > y0)
+	{
+		vy = 0;
+		y = y0;
+	}
+	else
+	vy = 0.016f;
 }
 void CPakkun1::Shoot() {
-
+	vy = 0;
 }
