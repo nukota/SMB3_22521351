@@ -9,7 +9,8 @@
 
 #define WINGKOOPAS_STATE_DIE 100
 
-#define ID_ANI_WINGKOOPAS 39000
+#define ID_ANI_WINGKOOPAS_LEFT 39001
+#define ID_ANI_WINGKOOPAS_RIGHT 39002
 
 class CWingKoopas : public CGameObject
 {
@@ -17,7 +18,7 @@ protected:
 	float ax;
 	float ay;
 
-	ULONGLONG timer;
+	ULONGLONG timer, jump_timer;
 
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);

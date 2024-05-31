@@ -12,7 +12,7 @@
 #include "Koopas.h"
 #include "WingGoomba.h"
 #include "WingKoopas.h"
-#include "PakkunFlower.h"
+#include "PakkunFlower1.h"
 
 #include "Collision.h"
 
@@ -74,6 +74,8 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithKoopas(e);
 	else if (dynamic_cast<CWingGoomba*>(e->obj))
 		OnCollisionWithWingGoomba(e);
+	else if (dynamic_cast<CWingKoopas*>(e->obj))
+		OnCollisionWithWingKoopas(e);
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
@@ -196,65 +198,6 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e)
 			}
 		}
 	}
-	/*if (e->ny < 0)
-	{
-		if (koopas->GetState() == KOOPAS_STATE_WALKING)
-		{
-			koopas->SetState(KOOPAS_STATE_IDLE);
-			y -= 6;
-			vy = -MARIO_JUMP_DEFLECT_SPEED;
-			return;
-		}
-		if (koopas->GetState() == KOOPAS_STATE_IDLE) {
-			if (e->nx < 0) {
-				koopas->SetState(KOOPAS_STATE_SPINNING);
-				koopas->SpinLeft();
-			}
-			else if (e->nx >=0) {
-				koopas->SpinRight();
-				koopas->SetState(KOOPAS_STATE_SPINNING);
-			}
-		}
-		else if (untouchable == 0)
-		{
-			if (level > MARIO_LEVEL_SMALL)
-			{
-				level = MARIO_LEVEL_SMALL;
-				StartUntouchable();
-			}
-			else
-			{
-				DebugOut(L">>> Mario DIE >>> \n");
-				SetState(MARIO_STATE_DIE);
-			}
-		}
-	}
-	else // hit by Koopas
-	{
-		if (koopas->GetState() == KOOPAS_STATE_IDLE) {
-			if (e->nx < 0) {
-				koopas->SpinLeft();
-				koopas->SetState(KOOPAS_STATE_SPINNING);
-			}
-			else if (e->nx >= 0) {
-				koopas->SpinRight();
-				koopas->SetState(KOOPAS_STATE_SPINNING);
-			}
-		} 
-		else if (untouchable == 0)
-		{
-			if (level > MARIO_LEVEL_SMALL)
-			{
-				level = MARIO_LEVEL_SMALL;
-				StartUntouchable();
-			}
-			else
-			{
-				DebugOut(L">>> Mario DIE >>> \n");
-				SetState(MARIO_STATE_DIE);
-			}
-		}
-	}*/
 }
 void CMario::OnCollisionWithWingGoomba(LPCOLLISIONEVENT e)
 {
@@ -267,6 +210,31 @@ void CMario::OnCollisionWithWingGoomba(LPCOLLISIONEVENT e)
 		vy = -MARIO_JUMP_DEFLECT_SPEED;
 	}
 	else // hit by WingGoomba
+	{
+		if (untouchable == 0)
+		{
+			if (level > MARIO_LEVEL_SMALL)
+			{
+				level = MARIO_LEVEL_SMALL;
+				StartUntouchable();
+			}
+			else
+			{
+				DebugOut(L">>> Mario DIE >>> \n");
+				SetState(MARIO_STATE_DIE);
+			}
+		}
+	}
+}
+void CMario::OnCollisionWithWingKoopas(LPCOLLISIONEVENT e)
+{
+	CWingKoopas* wingkoopas = dynamic_cast<CWingKoopas*>(e->obj);
+	if (e->ny < 0)
+	{
+		wingkoopas->SetState(WINGKOOPAS_STATE_DIE);
+		vy = -MARIO_JUMP_DEFLECT_SPEED;
+	}
+	else // hit by WingKoopas
 	{
 		if (untouchable == 0)
 		{
