@@ -7,6 +7,12 @@
 #include "Goomba.h"
 #include "Coin.h"
 #include "Portal.h"
+#include "MysteryBox.h"
+#include "MushRoom.h"
+#include "Koopas.h"
+#include "WingGoomba.h"
+#include "WingKoopas.h"
+#include "PakkunFlower1.h"
 
 #include "Collision.h"
 
@@ -37,6 +43,12 @@ void CMario::OnNoCollision(DWORD dt)
 
 void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 {
+	if (e->ny < 0 && e->obj->IsStair())
+	{
+		vy = 0;
+		isOnPlatform = true;
+	}
+	else
 	if (e->ny != 0 && e->obj->IsBlocking())
 	{
 		vy = 0;
@@ -54,6 +66,16 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithCoin(e);
 	else if (dynamic_cast<CPortal*>(e->obj))
 		OnCollisionWithPortal(e);
+	else if (dynamic_cast<CMysteryBox*>(e->obj))
+		OnCollisionWithMysteryBox(e);
+	else if (dynamic_cast<CMushRoom*>(e->obj))
+		OnCollisionWithMushRoom(e);
+	else if (dynamic_cast<CKoopas*>(e->obj))
+		OnCollisionWithKoopas(e);
+	else if (dynamic_cast<CWingGoomba*>(e->obj))
+		OnCollisionWithWingGoomba(e);
+	else if (dynamic_cast<CWingKoopas*>(e->obj))
+		OnCollisionWithWingKoopas(e);
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
@@ -100,6 +122,134 @@ void CMario::OnCollisionWithPortal(LPCOLLISIONEVENT e)
 {
 	CPortal* p = (CPortal*)e->obj;
 	CGame::GetInstance()->InitiateSwitchScene(p->GetSceneId());
+}
+
+void CMario::OnCollisionWithMysteryBox(LPCOLLISIONEVENT e)
+{
+	CMysteryBox* mysterybox = (CMysteryBox*)(e->obj);
+	if (e->ny > 0 && mysterybox->GetState() == MYSTERYBOX_STATE_FIRST) {
+		mysterybox->SetState(MYSTERYBOX_STATE_TAKEN);
+	}
+}
+
+void CMario::OnCollisionWithMushRoom(LPCOLLISIONEVENT e) 
+{
+	e->obj->Delete();
+	if (level == MARIO_LEVEL_SMALL)
+	{
+		y -= 8;
+		level = MARIO_LEVEL_BIG;
+		StartUntouchable();
+	}
+}
+
+void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e)
+{
+	CKoopas* koopas = dynamic_cast<CKoopas*>(e->obj);
+	if (koopas->GetState() == KOOPAS_STATE_WALKING) 
+	{
+		if (e->ny < 0) 
+		{
+			koopas->SetState(KOOPAS_STATE_IDLE);
+			y -= 10;
+			vy = -MARIO_JUMP_DEFLECT_SPEED;
+			return;
+		} 
+		else if (untouchable == 0)
+		{
+			if (level > MARIO_LEVEL_SMALL)
+			{
+				level = MARIO_LEVEL_SMALL;
+				StartUntouchable();
+			}
+			else
+			{
+				DebugOut(L">>> Mario DIE >>> \n");
+				SetState(MARIO_STATE_DIE);
+			}
+		}
+	}
+	else if (koopas->GetState() == KOOPAS_STATE_IDLE)
+	{
+		if (e->nx < 0) {
+			y -= 10;
+			koopas->SetState(KOOPAS_STATE_SPINNING);
+			koopas->SpinLeft();
+		}
+		else {
+			y -= 10;
+			koopas->SetState(KOOPAS_STATE_SPINNING);
+			koopas->SpinRight();
+		}
+	}
+	else
+	{
+		if (untouchable == 0)
+		{
+			if (level > MARIO_LEVEL_SMALL)
+			{
+				level = MARIO_LEVEL_SMALL;
+				StartUntouchable();
+			}
+			else
+			{
+				DebugOut(L">>> Mario DIE >>> \n");
+				SetState(MARIO_STATE_DIE);
+			}
+		}
+	}
+}
+void CMario::OnCollisionWithWingGoomba(LPCOLLISIONEVENT e)
+{
+	CWingGoomba* winggoomba = dynamic_cast<CWingGoomba*>(e->obj);
+
+	// jump on top >> kill WingGoomba and deflect a bit 
+	if (e->ny < 0)
+	{
+		winggoomba->SetState(WINGGOOMBA_STATE_DIE);
+		vy = -MARIO_JUMP_DEFLECT_SPEED;
+	}
+	else // hit by WingGoomba
+	{
+		if (untouchable == 0)
+		{
+			if (level > MARIO_LEVEL_SMALL)
+			{
+				level = MARIO_LEVEL_SMALL;
+				StartUntouchable();
+			}
+			else
+			{
+				DebugOut(L">>> Mario DIE >>> \n");
+				SetState(MARIO_STATE_DIE);
+			}
+		}
+	}
+}
+void CMario::OnCollisionWithWingKoopas(LPCOLLISIONEVENT e)
+{
+	CWingKoopas* wingkoopas = dynamic_cast<CWingKoopas*>(e->obj);
+	if (e->ny < 0)
+	{
+		wingkoopas->SetState(WINGKOOPAS_STATE_DIE);
+		vy = -MARIO_JUMP_DEFLECT_SPEED;
+	}
+	else // hit by WingKoopas
+	{
+		if (untouchable == 0)
+		{
+			if (level > MARIO_LEVEL_SMALL)
+			{
+				level = MARIO_LEVEL_SMALL;
+				StartUntouchable();
+			}
+			else
+			{
+				DebugOut(L">>> Mario DIE >>> \n");
+				SetState(MARIO_STATE_DIE);
+			}
+		}
+	}
 }
 
 //

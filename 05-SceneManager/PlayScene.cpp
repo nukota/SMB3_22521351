@@ -9,10 +9,12 @@
 #include "Portal.h"
 #include "Coin.h"
 #include "Platform.h"
+#include "Ground.h"
 
 #include "SampleKeyEventHandler.h"
 
 using namespace std;
+CPlayScene* CPlayScene::__instance = NULL;
 
 CPlayScene::CPlayScene(int id, LPCWSTR filePath):
 	CScene(id, filePath)
@@ -118,12 +120,38 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 		break;
 	case OBJECT_TYPE_GOOMBA: obj = new CGoomba(x,y); break;
 	case OBJECT_TYPE_BRICK: obj = new CBrick(x,y); break;
-	case OBJECT_TYPE_GROUND: obj = new CGround(x, y); break;
 	case OBJECT_TYPE_COIN: obj = new CCoin(x, y); break;
-	case OBJECT_TYPE_MYSTERYBOX: obj = new CMysteryBox(x, y); break;
-	case OBJECT_TYPE_TREE: obj = new CTree(x, y); break;
+	case OBJECT_TYPE_MYSTERYBOX_COIN: obj = new CMysteryBox(x, y, 1); break;
+	case OBJECT_TYPE_MYSTERYBOX_MUSHROOM: obj = new CMysteryBox(x, y, 2); break;
+	case OBJECT_TYPE_TREE1: obj = new CTree1(x, y); break;
+	case OBJECT_TYPE_TREE2: obj = new CTree2(x, y); break;
+	case OBJECT_TYPE_TREE3: obj = new CTree3(x, y); break;
+	case OBJECT_TYPE_TREE4: obj = new CTree4(x, y); break;
 	case OBJECT_TYPE_BUSH: obj = new CBush(x, y); break;
 	case OBJECT_TYPE_WARPPIPE: obj = new CWarpPipe(x, y); break;
+	case OBJECT_TYPE_CLOUD: obj = new CCloud(x, y); break;
+	case OBJECT_TYPE_STAIR0: obj = new CStair0(x, y); break;
+	case OBJECT_TYPE_STAIR1: obj = new CStair1(x, y); break;
+	case OBJECT_TYPE_STAIR2: obj = new CStair2(x, y); break;
+	case OBJECT_TYPE_STAIR3: obj = new CStair3(x, y); break;
+	case OBJECT_TYPE_STAIR4: obj = new CStair4(x, y); break;
+	case OBJECT_TYPE_STAIR5: obj = new CStair5(x, y); break;
+	case OBJECT_TYPE_STAIR6: obj = new CStair6(x, y); break;
+	case OBJECT_TYPE_STAIR7: obj = new CStair7(x, y); break;
+	case OBJECT_TYPE_STAIR8: obj = new CStair8(x, y); break;
+	case OBJECT_TYPE_STAIR9: obj = new CStair9(x, y); break;
+	case OBJECT_TYPE_WOOD: obj = new CWood(x, y); break;
+	case OBJECT_TYPE_PIPEBELOW: obj = new CPipeBelow(x, y); break;
+	case OBJECT_TYPE_PIPEABOVE: obj = new CPipeAbove(x, y); break;
+	case OBJECT_TYPE_BLACKBACKGROUND: obj = new CBlackBackground(x, y); break;
+	case OBJECT_TYPE_PRIZE: obj = new CPrize(x, y); break;
+	case OBJECT_TYPE_KOOPAS: obj = new CKoopas(x, y); break;
+	case OBJECT_TYPE_KOOPAS_2: obj = new CKoopas(x, y, x - 35, x + 35); break;
+	case OBJECT_TYPE_WINGGOOMBA: obj = new CWingGoomba(x, y); break;
+	case OBJECT_TYPE_WINGKOOPAS: obj = new CWingKoopas(x, y); break;
+	case OBJECT_TYPE_CURTAIN: obj = new CCurtain(x, y); break;
+	case OBJECT_TYPE_TITLE: obj = new CTitle(x, y); break;
+	case OBJECT_TYPE_PAKKUNFLOWER1: obj = new CPakkun1(x, y); break;
 
 	case OBJECT_TYPE_PLATFORM:
 	{
@@ -136,6 +164,24 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 		int sprite_end = atoi(tokens[8].c_str());
 
 		obj = new CPlatform(
+			x, y,
+			cell_width, cell_height, length,
+			sprite_begin, sprite_middle, sprite_end
+		);
+
+		break;
+	}
+	case OBJECT_TYPE_GROUND:
+	{
+
+		float cell_width = (float)atof(tokens[3].c_str());
+		float cell_height = (float)atof(tokens[4].c_str());
+		int length = atoi(tokens[5].c_str());
+		int sprite_begin = atoi(tokens[6].c_str());
+		int sprite_middle = atoi(tokens[7].c_str());
+		int sprite_end = atoi(tokens[8].c_str());
+
+		obj = new CGround(
 			x, y,
 			cell_width, cell_height, length,
 			sprite_begin, sprite_middle, sprite_end
@@ -240,16 +286,24 @@ void CPlayScene::Update(DWORD dt)
 {
 	// We know that Mario is the first object in the list hence we won't add him into the colliable object list
 	// TO-DO: This is a "dirty" way, need a more organized way 
-
 	vector<LPGAMEOBJECT> coObjects;
 	for (size_t i = 1; i < objects.size(); i++)
 	{
 		coObjects.push_back(objects[i]);
 	}
 
-	for (size_t i = 0; i < objects.size(); i++)
+	size_t i = 0;
+	while (i < objects.size())
 	{
 		objects[i]->Update(dt, &coObjects);
+		if (objects[i]->CreateSubObject) {
+			CGameObject* obj = NULL;
+			obj = objects[i]->subObject;
+			objects.push_back(obj);
+			Render();
+			objects[i]->CreateSubObject = false;
+		}
+		i++;
 	}
 
 	// skip the rest if scene was already unloaded (Mario::Update might trigger PlayScene::Unload)
@@ -264,6 +318,7 @@ void CPlayScene::Update(DWORD dt)
 	cy -= game->GetBackBufferHeight() / 2;
 
 	if (cx < 0) cx = 0;
+	if (cx > 2545) cx = 2545;
 
 	CGame::GetInstance()->SetCamPos(cx, 0.0f /*cy*/);
 
@@ -326,4 +381,9 @@ void CPlayScene::PurgeDeletedObjects()
 	objects.erase(
 		std::remove_if(objects.begin(), objects.end(), CPlayScene::IsGameObjectDeleted),
 		objects.end());
+}
+
+void CPlayScene::SpawnGameObject(CGameObject* obj, float x, float y) {
+	obj->SetPosition(x, y);
+	objects.push_back(obj);
 }
