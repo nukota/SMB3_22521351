@@ -18,6 +18,8 @@
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
+	CGame::GetInstance()->GetCurrentScene()->xMario = x;
+	CGame::GetInstance()->GetCurrentScene()->yMario = y;
 	vy += ay * dt;
 	vx += ax * dt;
 

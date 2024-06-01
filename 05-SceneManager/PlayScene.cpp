@@ -152,6 +152,8 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_CURTAIN: obj = new CCurtain(x, y); break;
 	case OBJECT_TYPE_TITLE: obj = new CTitle(x, y); break;
 	case OBJECT_TYPE_PAKKUNFLOWER1: obj = new CPakkun1(x, y); break;
+	case OBJECT_TYPE_PAKKUNFLOWER2: obj = new CPakkun2(x, y); break;
+	case OBJECT_TYPE_PAKKUNFLOWER3: obj = new CPakkun3(x, y); break;
 
 	case OBJECT_TYPE_PLATFORM:
 	{

@@ -158,6 +158,7 @@
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Curtain.cpp" />
     <ClCompile Include="debug.cpp" />
+    <ClCompile Include="fireball.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Goomba.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Curtain.h" />
     <ClInclude Include="debug.h" />
+    <ClInclude Include="fireball.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Goomba.h" />
@@ -226,7 +228,7 @@
     <ClInclude Include="MysteryBox.h" />
     <ClInclude Include="PakkunFlower1.h" />
     <ClInclude Include="PakkunFlower2.h" />
-    <ClInclude Include="PakkunPlower3.h" />
+    <ClInclude Include="PakkunFlower3.h" />
     <ClInclude Include="PipeAbove.h" />
     <ClInclude Include="PipeBelow.h" />
     <ClInclude Include="Platform.h" />

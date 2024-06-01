@@ -195,6 +195,9 @@
     <ClCompile Include="Title.cpp">
       <Filter>Source Files\FirstSceneObject</Filter>
     </ClCompile>
+    <ClCompile Include="fireball.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -359,7 +362,7 @@
     <ClInclude Include="PakkunFlower2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PakkunPlower3.h">
+    <ClInclude Include="PakkunFlower3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Curtain.h">
@@ -367,6 +370,9 @@
     </ClInclude>
     <ClInclude Include="Title.h">
       <Filter>Header Files\FirstSceneObject</Filter>
+    </ClInclude>
+    <ClInclude Include="fireball.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
