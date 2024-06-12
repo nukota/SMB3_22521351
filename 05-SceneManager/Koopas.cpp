@@ -140,7 +140,6 @@ void CKoopas::SetState(int state)
 	case KOOPAS_STATE_SPINNING:
 		break;
 	case KOOPAS_STATE_IDLE:
-		y -= 4;
 		vx = 0;
 		break;
 	case KOOPAS_STATE_DIE:

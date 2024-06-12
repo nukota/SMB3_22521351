@@ -13,11 +13,18 @@
 #include "WingGoomba.h"
 #include "WingKoopas.h"
 #include "PakkunFlower1.h"
+#include "PakkunFlower2.h"
+#include "PakkunFlower3.h"
+#include "fireball.h"
+#include "Prize.h"
+#include "Spawner.h"
 
 #include "Collision.h"
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
+	CGame::GetInstance()->GetCurrentScene()->xMario = x;
+	CGame::GetInstance()->GetCurrentScene()->yMario = y;
 	vy += ay * dt;
 	vx += ax * dt;
 
@@ -76,6 +83,14 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithWingGoomba(e);
 	else if (dynamic_cast<CWingKoopas*>(e->obj))
 		OnCollisionWithWingKoopas(e);
+	else if (dynamic_cast<CPakkun1*>(e->obj))
+		LoseLife();
+	else if (dynamic_cast<CPakkun2*>(e->obj))
+		LoseLife();
+	else if (dynamic_cast<CPakkun3*>(e->obj))
+		LoseLife();
+	else if (dynamic_cast<CFireBall*>(e->obj))
+		LoseLife(e);
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
@@ -137,6 +152,7 @@ void CMario::OnCollisionWithMushRoom(LPCOLLISIONEVENT e)
 	e->obj->Delete();
 	if (level == MARIO_LEVEL_SMALL)
 	{
+		StartUntouchable();
 		y -= 8;
 		level = MARIO_LEVEL_BIG;
 		StartUntouchable();
@@ -252,6 +268,26 @@ void CMario::OnCollisionWithWingKoopas(LPCOLLISIONEVENT e)
 	}
 }
 
+void CMario::LoseLife(LPCOLLISIONEVENT e)
+{
+	if (e != NULL) {
+		e->obj->Delete();
+	}
+	if (untouchable == 0)
+	{
+		if (level > MARIO_LEVEL_SMALL)
+		{
+			vy = -MARIO_JUMP_DEFLECT_SPEED;
+			level = MARIO_LEVEL_SMALL;
+			StartUntouchable();
+		}
+		else
+		{
+			DebugOut(L">>> Mario DIE >>> \n");
+			SetState(MARIO_STATE_DIE);
+		}
+	}
+}
 //
 // Get animation ID for small Mario
 //

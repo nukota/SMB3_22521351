@@ -158,6 +158,7 @@
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Curtain.cpp" />
     <ClCompile Include="debug.cpp" />
+    <ClCompile Include="fireball.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Goomba.cpp" />
@@ -177,6 +178,7 @@
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="Prize.cpp" />
     <ClCompile Include="SampleKeyEventHandler.cpp" />
+    <ClCompile Include="Spawner.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Sprites.cpp" />
     <ClCompile Include="Stair0.cpp" />
@@ -215,6 +217,7 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Curtain.h" />
     <ClInclude Include="debug.h" />
+    <ClInclude Include="fireball.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Goomba.h" />
@@ -226,7 +229,7 @@
     <ClInclude Include="MysteryBox.h" />
     <ClInclude Include="PakkunFlower1.h" />
     <ClInclude Include="PakkunFlower2.h" />
-    <ClInclude Include="PakkunPlower3.h" />
+    <ClInclude Include="PakkunFlower3.h" />
     <ClInclude Include="PipeAbove.h" />
     <ClInclude Include="PipeBelow.h" />
     <ClInclude Include="Platform.h" />
@@ -235,6 +238,11 @@
     <ClInclude Include="Prize.h" />
     <ClInclude Include="SampleKeyEventHandler.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Spawner.h" />
+    <ClInclude Include="Spawner1.h" />
+    <ClInclude Include="Spawner2.h" />
+    <ClInclude Include="Spawner3.h" />
+    <ClInclude Include="Spawner4.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Sprites.h" />
     <ClInclude Include="Stair0.h" />

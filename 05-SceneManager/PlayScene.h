@@ -38,7 +38,12 @@
 #include "Title.h"
 #include "PakkunFlower1.h"
 #include "PakkunFlower2.h"
-#include "PakkunPlower3.h"
+#include "PakkunFlower3.h"
+#include "Spawner.h"
+#include "Spawner1.h"
+#include "Spawner2.h"
+#include "Spawner3.h"	
+#include "Spawner4.h"
 //#include "PakkunFlower1.h"
 
 
