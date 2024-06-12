@@ -152,6 +152,10 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_WINGKOOPAS: obj = new CWingKoopas(x, y); break;
 	case OBJECT_TYPE_CURTAIN: obj = new CCurtain(x, y); break;
 	case OBJECT_TYPE_TITLE: obj = new CTitle(x, y); break;
+	case OBJECT_TYPE_TITLENUMBER: obj = new CTitleNumber(x, y); break; 
+	case OBJECT_TYPE_FLOOR: obj = new CFloor(x, y); break;
+	case OBJECT_TYPE_BACKGROUND: obj = new CBackground(x, y); break;
+	case OBJECT_TYPE_BACKGROUNDITEMS: obj = new CBackgroundItems(x, y); break;
 	case OBJECT_TYPE_PAKKUNFLOWER1: obj = new CPakkun1(x, y); break;
 	case OBJECT_TYPE_PAKKUNFLOWER2: obj = new CPakkun2(x, y); break;
 	case OBJECT_TYPE_PAKKUNFLOWER3: obj = new CPakkun3(x, y); break;
@@ -303,15 +307,17 @@ void CPlayScene::Update(DWORD dt)
 	// Update camera to follow mario
 	float cx, cy;
 	player->GetPosition(cx, cy);
-	
 
 	CGame* game = CGame::GetInstance();
 	cx -= game->GetBackBufferWidth() / 2;
 	cy -= game->GetBackBufferHeight() / 2;
 
-	if (cx < 0) cx = 0;
-	if (cx > 2545) cx = 2545;
-
+	if (CGame::GetInstance()->GetCurrentScene()->id == 5) cx = 0;
+	else {
+		if (cx < 0) cx = 0;
+		if (cx > 2545) cx = 2545;
+	}
+	
 	CGame::GetInstance()->SetCamPos(cx, 0.0f /*cy*/);
 
 	size_t i = 0;
