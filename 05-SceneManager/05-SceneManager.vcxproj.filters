@@ -207,6 +207,18 @@
     <ClCompile Include="Spawner.cpp">
       <Filter>Source Files\Spawners</Filter>
     </ClCompile>
+    <ClCompile Include="TitleNumber.cpp">
+      <Filter>Source Files\FirstSceneObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Floor.cpp">
+      <Filter>Source Files\FirstSceneObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>Source Files\FirstSceneObject</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundItems.cpp">
+      <Filter>Source Files\FirstSceneObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -397,6 +409,18 @@
     </ClInclude>
     <ClInclude Include="Spawner4.h">
       <Filter>Header Files\Spawners</Filter>
+    </ClInclude>
+    <ClInclude Include="Floor.h">
+      <Filter>Header Files\FirstSceneObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleNumber.h">
+      <Filter>Header Files\FirstSceneObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>Header Files\FirstSceneObject</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundItems.h">
+      <Filter>Header Files\FirstSceneObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
