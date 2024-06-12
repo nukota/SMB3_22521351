@@ -16,6 +16,8 @@
 #include "PakkunFlower2.h"
 #include "PakkunFlower3.h"
 #include "fireball.h"
+#include "Prize.h"
+#include "Spawner.h"
 
 #include "Collision.h"
 

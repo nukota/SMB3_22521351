@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObject.h"
 
-#define WINGKOOPAS_GRAVITY 0.001f
+#define WINGKOOPAS_GRAVITY 0.0007f
 #define WINGKOOPAS_WALKING_SPEED 0.05f
 
 #define WINGKOOPAS_BBOX_WIDTH 16
@@ -17,7 +17,7 @@ class CWingKoopas : public CGameObject
 protected:
 	float ax;
 	float ay;
-
+	BOOLEAN isOnPlatForm;
 	ULONGLONG timer, jump_timer;
 
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);

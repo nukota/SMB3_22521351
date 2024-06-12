@@ -178,6 +178,7 @@
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="Prize.cpp" />
     <ClCompile Include="SampleKeyEventHandler.cpp" />
+    <ClCompile Include="Spawner.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Sprites.cpp" />
     <ClCompile Include="Stair0.cpp" />
@@ -237,6 +238,11 @@
     <ClInclude Include="Prize.h" />
     <ClInclude Include="SampleKeyEventHandler.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Spawner.h" />
+    <ClInclude Include="Spawner1.h" />
+    <ClInclude Include="Spawner2.h" />
+    <ClInclude Include="Spawner3.h" />
+    <ClInclude Include="Spawner4.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Sprites.h" />
     <ClInclude Include="Stair0.h" />
