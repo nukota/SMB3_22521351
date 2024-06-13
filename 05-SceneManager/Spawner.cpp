@@ -17,7 +17,7 @@ void CSpawner::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	if (end) return;
 	if (!start && CGame::GetInstance()->GetCurrentScene()->xMario + 180 >= this->x)
 	{
-		start = true; DebugOut(L"do!\n");
+		start = true;
 	}
 	if (start) {
 		if (index >= subObjects.size()) {

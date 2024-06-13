@@ -71,6 +71,8 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithGoomba(e);
 	else if (dynamic_cast<CCoin*>(e->obj))
 		OnCollisionWithCoin(e);
+	else if (dynamic_cast<CPrize*>(e->obj))
+		OnCollisionWithPrize(e);
 	else if (dynamic_cast<CPortal*>(e->obj))
 		OnCollisionWithPortal(e);
 	else if (dynamic_cast<CMysteryBox*>(e->obj))
@@ -131,6 +133,17 @@ void CMario::OnCollisionWithCoin(LPCOLLISIONEVENT e)
 {
 	e->obj->Delete();
 	coin++;
+}
+
+void CMario::OnCollisionWithPrize(LPCOLLISIONEVENT e)
+{
+	CPrize* prize = (CPrize*)(e->obj);
+	if (prize->GetState() == PRIZE_STATE_MUSHROOM)
+		prize->SetState(PRIZE_STATE_MUSHROOM_FLYUP);
+	else if (prize->GetState() == PRIZE_STATE_FLOWER)
+		prize->SetState(PRIZE_STATE_FLOWER_FLYUP);
+	else if (prize->GetState() == PRIZE_STATE_STAR)
+		prize->SetState(PRIZE_STATE_STAR_FLYUP);
 }
 
 void CMario::OnCollisionWithPortal(LPCOLLISIONEVENT e)

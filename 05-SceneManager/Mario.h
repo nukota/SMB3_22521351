@@ -116,6 +116,7 @@ class CMario : public CGameObject
 
 	void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
 	void OnCollisionWithCoin(LPCOLLISIONEVENT e);
+	void OnCollisionWithPrize(LPCOLLISIONEVENT e);
 	void OnCollisionWithPortal(LPCOLLISIONEVENT e);
 	void OnCollisionWithStair(LPCOLLISIONEVENT e);
 	void OnCollisionWithMysteryBox(LPCOLLISIONEVENT e);
