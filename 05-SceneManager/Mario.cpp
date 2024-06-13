@@ -187,7 +187,15 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e)
 	}
 	else if (koopas->GetState() == KOOPAS_STATE_IDLE)
 	{
-		if (e->nx < 0) {
+		if (e->ny < 0)
+		{
+			koopas->SetState(KOOPAS_STATE_SPINNING);
+			koopas->SpinLeft();
+			y -= 10;
+			vy = -MARIO_JUMP_DEFLECT_SPEED;
+			return;
+		}
+		else if (e->nx < 0) {
 			y -= 10;
 			koopas->SetState(KOOPAS_STATE_SPINNING);
 			koopas->SpinLeft();

@@ -8,6 +8,7 @@
 #define WINGKOOPAS_BBOX_HEIGHT 28
 
 #define WINGKOOPAS_STATE_DIE 100
+#define WINGKOOPAS_STATE_DIE_2 200
 
 #define ID_ANI_WINGKOOPAS_LEFT 39001
 #define ID_ANI_WINGKOOPAS_RIGHT 39002
@@ -24,7 +25,7 @@ protected:
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
 	virtual void Render();
 
-	virtual int IsCollidable() { return 1; };
+	virtual int IsCollidable() { return !(state == WINGKOOPAS_STATE_DIE_2); };
 	virtual int IsBlocking() { return 0; }
 	virtual void OnNoCollision(DWORD dt);
 

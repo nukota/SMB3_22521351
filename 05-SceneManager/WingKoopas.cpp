@@ -75,10 +75,18 @@ void CWingKoopas::Render()
 void CWingKoopas::SetState(int state)
 {
 	CGameObject::SetState(state);
-	if (state == WINGKOOPAS_STATE_DIE) {
+	if (state == WINGKOOPAS_STATE_DIE) 
+	{
 		subObject = new CKoopas(x, y);
 		subObject->SetPosition(x, y - 10);
 		CreateSubObject = true;
 		timer = GetTickCount64();
+	}
+	else if (state == WINGKOOPAS_STATE_DIE_2)
+	{
+		y -= 10;
+		vy = -0.05f;
+		vx = 0;
+		ax = 0;
 	}
 }
