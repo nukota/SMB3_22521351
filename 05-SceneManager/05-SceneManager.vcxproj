@@ -188,10 +188,7 @@
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="TitleNumber.cpp" />
-    <ClCompile Include="Tree1.cpp" />
-    <ClCompile Include="Tree2.cpp" />
-    <ClCompile Include="Tree3.cpp" />
-    <ClCompile Include="Tree4.cpp" />
+    <ClCompile Include="Tree.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="WarpPipe.cpp" />
     <ClCompile Include="WingGoomba.cpp" />
@@ -250,10 +247,7 @@
     <ClInclude Include="Textures.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="TitleNumber.h" />
-    <ClInclude Include="Tree1.h" />
-    <ClInclude Include="Tree2.h" />
-    <ClInclude Include="Tree3.h" />
-    <ClInclude Include="Tree4.h" />
+    <ClInclude Include="Tree.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="WarpPipe.h" />
     <ClInclude Include="WingGoomba.h" />
