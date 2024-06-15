@@ -148,6 +148,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_KOOPAS: obj = new CKoopas(x, y); break;
 	case OBJECT_TYPE_KOOPAS_1: obj = new CKoopas(x, y, x - 35, x + 35); break;
 	case OBJECT_TYPE_KOOPAS_2: obj = new CKoopas(x, y, x - 10, x + 10); break;
+	case OBJECT_TYPE_GREENKOOPAS: obj = new CGreenKoopas(x, y); break;
 	case OBJECT_TYPE_WINGGOOMBA: obj = new CWingGoomba(x, y); break;
 	case OBJECT_TYPE_WINGKOOPAS: obj = new CWingKoopas(x, y); break;
 	case OBJECT_TYPE_CURTAIN: obj = new CCurtain(x, y); break;

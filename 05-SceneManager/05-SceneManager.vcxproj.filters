@@ -422,5 +422,8 @@
     <ClInclude Include="BackgroundItems.h">
       <Filter>Header Files\FirstSceneObject</Filter>
     </ClInclude>
+    <ClInclude Include="GreenKoopas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

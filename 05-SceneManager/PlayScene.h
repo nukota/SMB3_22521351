@@ -32,6 +32,7 @@
 #include "CoinFromBox.h"
 #include "MushRoom.h"
 #include "Koopas.h"
+#include "GreenKoopas.h"
 #include "WingGoomba.h"
 #include "WingKoopas.h"
 #include "Curtain.h"

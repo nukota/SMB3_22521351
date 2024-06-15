@@ -36,6 +36,8 @@ void CSpawner::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			subObject = new CWingGoomba(x, y); break;
 		case 4:
 			subObject = new CWingKoopas(x, y); break;
+		case 5:
+			subObject = new CGreenKoopas(x, y); break;
 		default:
 			subObject = new CGoomba(x, y); break;
 		}
