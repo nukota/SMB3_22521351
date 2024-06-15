@@ -1,7 +1,7 @@
 #pragma once
 #include "GameObject.h"
 
-#define WINGGOOMBA_GRAVITY 0.001f
+#define WINGGOOMBA_GRAVITY 0.0006f
 #define WINGGOOMBA_WALKING_SPEED 0.05f
 
 

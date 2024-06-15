@@ -3,15 +3,14 @@
 #include "GameObject.h"
 #include "Animation.h"
 #include "Animations.h"
+#include "ColorBoxesID.h"
 
-#define ID_ANI_STAIR9 29000
-#define STAIR9_WIDTH 48
-#define STAIR9_BBOX_WIDTH 48
-#define STAIR9_BBOX_HEIGHT 143
 
-class CStair9 : public CGameObject {
+class CColorBox : public CGameObject {
+protected: 
+	int type;
 public:
-	CStair9(float x, float y) : CGameObject(x, y) {}
+	CColorBox(float x, float y, int type) : CGameObject(x, y) { this->type = type; }
 	void Render();
 	void Update(DWORD dt) {}
 	void GetBoundingBox(float& l, float& t, float& r, float& b);

@@ -20,8 +20,8 @@ void CWingGoomba::GetBoundingBox(float& left, float& top, float& right, float& b
 
 void CWingGoomba::OnNoCollision(DWORD dt)
 {
-	if (jump_timer > 2000) {
-		vy -= 0.3;
+	if (jump_timer > 1200) {
+		vy -= 0.25f;
 		jump_timer = 0;
 	}
 	else jump_timer += dt;
