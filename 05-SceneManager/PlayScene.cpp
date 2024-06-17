@@ -160,11 +160,11 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_PAKKUNFLOWER1: obj = new CPakkun1(x, y); break;
 	case OBJECT_TYPE_PAKKUNFLOWER2: obj = new CPakkun2(x, y); break;
 	case OBJECT_TYPE_PAKKUNFLOWER3: obj = new CPakkun3(x, y); break;
-	case OBJECT_TYPE_SPAWNER: obj = new CSpawner(x, y); break;
-	case OBJECT_TYPE_SPAWNER1: obj = new CSpawner1(x, y); break;
-	case OBJECT_TYPE_SPAWNER2: obj = new CSpawner2(x, y); break;
-	case OBJECT_TYPE_SPAWNER3: obj = new CSpawner3(x, y); break;
-	case OBJECT_TYPE_SPAWNER4: obj = new CSpawner4(x, y); break;
+	case OBJECT_TYPE_SPAWNER: obj = new CSpawner(x, y, 0); break;
+	case OBJECT_TYPE_SPAWNER1: obj = new CSpawner(x, y, 1); break;
+	case OBJECT_TYPE_SPAWNER2: obj = new CSpawner(x, y,	2); break;
+	case OBJECT_TYPE_SPAWNER3: obj = new CSpawner(x, y, 3); break;
+	case OBJECT_TYPE_SPAWNER4: obj = new CSpawner(x, y, 4); break;
 
 	case OBJECT_TYPE_PLATFORM:
 	{

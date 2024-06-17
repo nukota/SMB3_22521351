@@ -22,7 +22,7 @@
 class CSpawner : public CGameObject {
 public:
 	//
-	CSpawner(float x, float y);
+	CSpawner(float x, float y, int type);
 	vector<int> subObjects; //1 = Goomba, 2 = Koopas, 3 = WingGooma, 4 = WingKoopas
 protected:
 	

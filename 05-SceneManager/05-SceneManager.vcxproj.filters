@@ -25,12 +25,6 @@
     <Filter Include="Source Files\FirstSceneObject">
       <UniqueIdentifier>{cee9dee5-6700-44d5-a24c-d71ad9a30b49}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Spawners">
-      <UniqueIdentifier>{ecac3b3c-66bb-4ad3-b025-8f9386f4f250}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Spawners">
-      <UniqueIdentifier>{35b58243-dca4-4ebe-9ac8-6225e58607f1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\ColorBoxes">
       <UniqueIdentifier>{c56eacbe-7439-47b2-bcea-445c1dab59d3}</UniqueIdentifier>
     </Filter>
@@ -168,9 +162,6 @@
     <ClCompile Include="fireball.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Spawner.cpp">
-      <Filter>Source Files\Spawners</Filter>
-    </ClCompile>
     <ClCompile Include="TitleNumber.cpp">
       <Filter>Source Files\FirstSceneObject</Filter>
     </ClCompile>
@@ -182,6 +173,12 @@
     </ClCompile>
     <ClCompile Include="BackgroundItems.cpp">
       <Filter>Source Files\FirstSceneObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Leaf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Spawner.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -323,21 +320,6 @@
     <ClInclude Include="fireball.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Spawner.h">
-      <Filter>Header Files\Spawners</Filter>
-    </ClInclude>
-    <ClInclude Include="Spawner1.h">
-      <Filter>Header Files\Spawners</Filter>
-    </ClInclude>
-    <ClInclude Include="Spawner2.h">
-      <Filter>Header Files\Spawners</Filter>
-    </ClInclude>
-    <ClInclude Include="Spawner3.h">
-      <Filter>Header Files\Spawners</Filter>
-    </ClInclude>
-    <ClInclude Include="Spawner4.h">
-      <Filter>Header Files\Spawners</Filter>
-    </ClInclude>
     <ClInclude Include="Floor.h">
       <Filter>Header Files\FirstSceneObject</Filter>
     </ClInclude>
@@ -355,6 +337,12 @@
     </ClInclude>
     <ClInclude Include="ColorBoxesID.h">
       <Filter>Header Files\ColorBoxes</Filter>
+    </ClInclude>
+    <ClInclude Include="Leaf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Spawner.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

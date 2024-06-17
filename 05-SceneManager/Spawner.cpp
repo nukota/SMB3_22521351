@@ -1,7 +1,17 @@
 #include "Spawner.h"
 
 
-CSpawner::CSpawner(float x, float y) {
+CSpawner::CSpawner(float x, float y, int type) {
+	switch (type) {
+	case 1: subObjects.push_back(1); break;
+	case 2:
+		subObjects.push_back(4);
+		subObjects.push_back(4);
+		subObjects.push_back(4);
+		break;
+	case 3: subObjects.push_back(5); break;
+	case 4: subObjects.push_back(3); break;
+	}
 }
 
 void CSpawner::Render() {
