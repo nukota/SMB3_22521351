@@ -123,6 +123,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_COIN: obj = new CCoin(x, y); break;
 	case OBJECT_TYPE_MYSTERYBOX_COIN: obj = new CMysteryBox(x, y, 1); break;
 	case OBJECT_TYPE_MYSTERYBOX_MUSHROOM: obj = new CMysteryBox(x, y, 2); break;
+	case OBJECT_TYPE_MYSTERYBOX_LEAF: obj = new CMysteryBox(x, y, 3); break;
 	case OBJECT_TYPE_TREE1: obj = new CTree(x, y, 1); break;
 	case OBJECT_TYPE_TREE2: obj = new CTree(x, y, 2); break;
 	case OBJECT_TYPE_TREE3: obj = new CTree(x, y, 3); break;
@@ -165,6 +166,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_SPAWNER2: obj = new CSpawner(x, y,	2); break;
 	case OBJECT_TYPE_SPAWNER3: obj = new CSpawner(x, y, 3); break;
 	case OBJECT_TYPE_SPAWNER4: obj = new CSpawner(x, y, 4); break;
+	case OBJECT_TYPE_LEAF: obj = new CLeaf(x, y); break;
 
 	case OBJECT_TYPE_PLATFORM:
 	{

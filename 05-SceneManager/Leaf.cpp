@@ -1,17 +1,26 @@
 #include "Leaf.h"
+#include "debug.h"
 
-CLeaf::CLeaf(float x, float y) : CGameObject(x, y) {}
+CLeaf::CLeaf(float x, float y) : CGameObject(x, y) {
+	SetState(LEAF_STATE_LEFT);
+}
 
 void CLeaf::Render()
 {
-	int aniId = ID_ANI_LEAF_LEFT;
-	if (state == LEAF_STATE_RIGHT) aniId = ID_ANI_LEAF_RIGHT;
+	int aniId;
+	if (state == LEAF_STATE_RIGHT) 
+		aniId = ID_ANI_LEAF_RIGHT;
+	else aniId = ID_ANI_LEAF_LEFT;
 	CAnimations* animations = CAnimations::GetInstance();
 	animations->Get(aniId)->Render(x, y);
 	//RenderBoundingBox();
 	if (!setAppear) {
 		start = GetTickCount64();
 		setAppear = true;
+		vy = -LEAF_FLYUP_SPEED;
+		vx = 0;
+		ax = 0;
+		ay = LEAF_GRAVITY;
 	}
 }
 
@@ -31,38 +40,37 @@ void CLeaf::OnNoCollision(DWORD dt)
 
 void CLeaf::OnCollisionWith(LPCOLLISIONEVENT e)
 {
-	if (GetTickCount64() - start > 500) {
-		if (!e->obj->IsBlocking()) return;
-		if (dynamic_cast<CLeaf*>(e->obj)) return;
-
-		if (e->ny != 0)
-		{
-			vy = 0;
-		}
-		else if (e->nx != 0)
-		{
-			vx = -vx;
-		}
-	}
-	else return;
 }
 
 void CLeaf::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	vy += ay * dt;
 	vx += ax * dt;
-	if (vx < 0)
-		SetState(LEAF_STATE_LEFT);
-	else if (vx > 0) 
-		SetState(LEAF_STATE_RIGHT);
-
-	if (GetTickCount64() - start < 500) {
-		vy = -LEAF_FLYUP_SPEED;
-		ax = 0;
+	phasetimer += dt;	
+	if (setAppear && GetTickCount64() - start > 400)
+	{
 		ay = 0;
-		vx = 0;
+		ay = -LEAF_GRAVITY_2;
+		if (phasetimer < 500) {
+			if (state == LEAF_STATE_RIGHT) {
+				vx = -LEAF_FALL_SPEED_X;
+				vy = LEAF_FALL_SPEED_Y;
+				SetState(LEAF_STATE_LEFT);
+				DebugOut(L"ayo!\n");
+			}
+			ax = LEAF_FALL_AIR_RESISTANT;
+		}
+		else if (phasetimer < 1000) {
+			if (state == LEAF_STATE_LEFT) {
+				vx = LEAF_FALL_SPEED_X;
+				vy = LEAF_FALL_SPEED_Y;
+				SetState(LEAF_STATE_RIGHT);
+			}
+			ax = -LEAF_FALL_AIR_RESISTANT;
+		}
+		else phasetimer = 0;
 	}
-
+	
 	CGameObject::Update(dt, coObjects);
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 }
