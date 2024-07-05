@@ -379,7 +379,7 @@ void CPlayScene::Update(DWORD dt)
 		if (cx > 2545) cx = 2545;
 	}
 	
-	CGame::GetInstance()->SetCamPos(cx, 0);
+	CGame::GetInstance()->SetCamPos(cx, 180);
 
 	size_t i = 0;
 	while (i < objects.size())
