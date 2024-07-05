@@ -153,6 +153,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_COLORBOX7: obj = new CColorBox(x, y, 7); break;
 	case OBJECT_TYPE_COLORBOX8: obj = new CColorBox(x, y, 8); break;
 	case OBJECT_TYPE_COLORBOX9: obj = new CColorBox(x, y, 9); break;
+	case OBJECT_TYPE_COLORBOX10: obj = new CColorBox(x, y, 10); break;
 	case OBJECT_TYPE_WOOD: obj = new CWood(x, y); break;
 	case OBJECT_TYPE_PIPEBELOW: obj = new CPipeBelow(x, y); break;
 	case OBJECT_TYPE_PIPEABOVE: obj = new CPipeAbove(x, y); break;
@@ -219,6 +220,12 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_DESTINATION13: obj = new CDestination(x, y, 13); break;
 	case OBJECT_TYPE_DESTINATION14: obj = new CDestination(x, y, 14); break;
 	case OBJECT_TYPE_DESTINATION15: obj = new CDestination(x, y, 15); break;
+	case OBJECT_TYPE_DECO1: obj = new CDecoration(x, y, 1); break;
+	case OBJECT_TYPE_DECO2: obj = new CDecoration(x, y, 2); break;
+	case OBJECT_TYPE_DECO3: obj = new CDecoration(x, y, 3); break;
+	case OBJECT_TYPE_BRICK2: obj = new CBrick2(x, y); break;
+	case OBJECT_TYPE_SMILECLOUD: obj = new CSmileCloud(x, y); break;
+	case OBJECT_TYPE_PIPE2: obj = new CPipe2(x, y); break;
 	case OBJECT_TYPE_PLATFORM:
 	{
 		float cell_width = (float)atof(tokens[3].c_str());
@@ -365,13 +372,14 @@ void CPlayScene::Update(DWORD dt)
 	cx -= game->GetBackBufferWidth() / 2;
 	cy -= game->GetBackBufferHeight() / 2;
 
+
 	if (CGame::GetInstance()->GetCurrentScene()->id == 5) cx = 0;
 	else {
 		if (cx < 0) cx = 0;
 		if (cx > 2545) cx = 2545;
 	}
 	
-	CGame::GetInstance()->SetCamPos(cx, 0.0f /*cy*/);
+	CGame::GetInstance()->SetCamPos(cx, 0);
 
 	size_t i = 0;
 	while (i < objects.size())

@@ -42,6 +42,10 @@
 #include "HammerBro.h"
 #include "MovingBush.h"
 #include "MarioIcon.h"
+#include "Brick2.h"
+#include "Pipe2.h"
+#include "Decoration.h"
+#include "SmileCloud.h"
 //#include "PakkunFlower1.h"
 
 

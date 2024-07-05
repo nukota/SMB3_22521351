@@ -14,6 +14,7 @@ void CColorBox::Render()
 	case 7: aniId = ID_ANI_COLOLRBOX7; break;
 	case 8: aniId = ID_ANI_COLOLRBOX8; break;
 	case 9: aniId = ID_ANI_COLOLRBOX9; break;
+	case 10: aniId = ID_ANI_COLOLRBOX10; break;
 	}
 	CAnimations* animations = CAnimations::GetInstance();
 	animations->Get(aniId)->Render(x + 4, y + 4);
@@ -34,6 +35,7 @@ void CColorBox::GetBoundingBox(float& l, float& t, float& r, float& b)
 	case 7: width = COLOLRBOX7_BBOX_WIDTH; height = COLOLRBOX7_BBOX_HEIGHT; break;
 	case 8: width = COLOLRBOX8_BBOX_WIDTH; height = COLOLRBOX8_BBOX_HEIGHT; break;
 	case 9: width = COLOLRBOX9_BBOX_WIDTH; height = COLOLRBOX9_BBOX_HEIGHT; break;
+	case 10: width = COLOLRBOX10_BBOX_WIDTH; height = COLOLRBOX10_BBOX_HEIGHT; break;
 	}
 	l = x - width / 2;
 	t = y - height / 2;

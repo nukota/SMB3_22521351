@@ -154,6 +154,7 @@
     <ClCompile Include="BlackBackground.cpp" />
     <ClCompile Include="Border.cpp" />
     <ClCompile Include="Brick.cpp" />
+    <ClCompile Include="Brick2.cpp" />
     <ClCompile Include="Bush.cpp" />
     <ClCompile Include="Cloud.cpp" />
     <ClCompile Include="Coin.cpp" />
@@ -161,6 +162,7 @@
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Curtain.cpp" />
     <ClCompile Include="debug.cpp" />
+    <ClCompile Include="Decoration.cpp" />
     <ClCompile Include="Destination.cpp" />
     <ClCompile Include="fireball.cpp" />
     <ClCompile Include="Floor.cpp" />
@@ -181,6 +183,7 @@
     <ClCompile Include="PakkunFlower2.cpp" />
     <ClCompile Include="PakkunFlower3.cpp" />
     <ClCompile Include="Path.cpp" />
+    <ClCompile Include="Pipe2.cpp" />
     <ClCompile Include="PipeAbove.cpp" />
     <ClCompile Include="PipeBelow.cpp" />
     <ClCompile Include="Platform.cpp" />
@@ -215,6 +218,7 @@
     <ClInclude Include="BlackBackground.h" />
     <ClInclude Include="Border.h" />
     <ClInclude Include="Brick.h" />
+    <ClInclude Include="Brick2.h" />
     <ClInclude Include="Bush.h" />
     <ClInclude Include="Cloud.h" />
     <ClInclude Include="Coin.h" />
@@ -222,6 +226,7 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Curtain.h" />
     <ClInclude Include="debug.h" />
+    <ClInclude Include="Decoration.h" />
     <ClInclude Include="Destination.h" />
     <ClInclude Include="fireball.h" />
     <ClInclude Include="Floor.h" />
@@ -243,6 +248,7 @@
     <ClInclude Include="PakkunFlower2.h" />
     <ClInclude Include="PakkunFlower3.h" />
     <ClInclude Include="Path.h" />
+    <ClInclude Include="Pipe2.h" />
     <ClInclude Include="PipeAbove.h" />
     <ClInclude Include="PipeBelow.h" />
     <ClInclude Include="Platform.h" />
