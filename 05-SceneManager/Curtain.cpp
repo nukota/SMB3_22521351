@@ -22,8 +22,9 @@ void CCurtain::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	if (settimer) timer += dt;
 	if (timer > 1000) {
 		if (y > -150) vy = -0.09f;
-		else 
+		else if (!createdSubObject)
 		{
+			createdSubObject = true;
 			subObject = new CTitle(x, y);
 			subObject->SetPosition(153, y);
 			CreateSubObject = true;

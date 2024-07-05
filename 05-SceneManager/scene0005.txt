@@ -11,12 +11,15 @@ brick.txt
 portal.txt
 background.txt
 backgrounditems.txt
+marioicon.txt
+
 #
 [OBJECTS]
 # type	x	y	extra_settings per object type
 # type: 0 = Mario , 1 = Brick, 2 = Goomba, 3 = Koopas, 4 = Coin, 5 = Platform
 #	51, 52 = Title, 53 = Curtains, 54 = Floor, 55,56 = Background.
 # See OBJECT_TYPE constants in AssetIDs.h
+
 
 #Background
 55	153	83
@@ -35,6 +38,9 @@ backgrounditems.txt
 0	120	10
 
 #Portal 
-57	320	160	336	190	1
+57	320	160	336	190	2
 57	-10	160	0	190	1
+
+#MARIOICON
+#120	65	68
 

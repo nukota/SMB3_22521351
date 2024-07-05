@@ -34,6 +34,14 @@
 #include "PakkunFlower3.h"
 #include "Spawner.h"
 #include "leaf.h"
+#include "River.h"
+#include "Path.h"
+#include "Rock.h"
+#include "Destination.h"
+#include "Border.h"
+#include "HammerBro.h"
+#include "MovingBush.h"
+#include "MarioIcon.h"
 //#include "PakkunFlower1.h"
 
 
@@ -42,7 +50,7 @@ class CPlayScene: public CScene
 static CPlayScene* __instance;
 protected: 
 	// A play scene has to have player, right? 
-	LPGAMEOBJECT player;					
+	LPGAMEOBJECT player, playericon;					
 
 	vector<LPGAMEOBJECT> objects;
 
@@ -63,6 +71,7 @@ public:
 	virtual void Unload();
 
 	LPGAMEOBJECT GetPlayer() { return player; }
+	LPGAMEOBJECT GetPlayerIcon() { return playericon; }
 
 	void Clear();
 	void PurgeDeletedObjects();

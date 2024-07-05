@@ -4,6 +4,7 @@
 #include "Game.h"
 
 #include "Mario.h"
+#include "MarioIcon.h"
 #include "PlayScene.h"
 
 void CSampleKeyHandler::OnKeyDown(int KeyCode)
@@ -42,6 +43,8 @@ void CSampleKeyHandler::OnKeyUp(int KeyCode)
 	switch (KeyCode)
 	{
 	case DIK_S:
+		if (CGame::GetInstance()->GetCurrentScene()->id = 2) 
+			CGame::GetInstance()->InitiateSwitchScene(1);
 		mario->SetState(MARIO_STATE_RELEASE_JUMP);
 		break;
 	case DIK_DOWN:
@@ -54,9 +57,12 @@ void CSampleKeyHandler::KeyState(BYTE *states)
 {
 	LPGAME game = CGame::GetInstance();
 	CMario* mario = (CMario*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	CMarioIcon* marioIcon = (CMarioIcon*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayerIcon();
 
 	if (game->IsKeyDown(DIK_RIGHT))
 	{
+		if (marioIcon != NULL) marioIcon->SetState(2);
+		else DebugOut(L"MarioIcon is null!\n");
 		if (game->IsKeyDown(DIK_A))
 			mario->SetState(MARIO_STATE_RUNNING_RIGHT);
 		else
@@ -64,10 +70,22 @@ void CSampleKeyHandler::KeyState(BYTE *states)
 	}
 	else if (game->IsKeyDown(DIK_LEFT))
 	{
+		if (marioIcon != NULL) marioIcon->SetState(1);
+		else DebugOut(L"MarioIcon is null!\n");
 		if (game->IsKeyDown(DIK_A))
 			mario->SetState(MARIO_STATE_RUNNING_LEFT);
 		else
 			mario->SetState(MARIO_STATE_WALKING_LEFT);
+	}
+	else if (game->IsKeyDown(DIK_UP)) 
+	{
+		if (marioIcon != NULL) marioIcon->SetState(3);
+		else DebugOut(L"MarioIcon is null!\n");
+	}
+	else if (game->IsKeyDown(DIK_DOWN))
+	{
+		if (marioIcon != NULL) marioIcon->SetState(4);
+		else DebugOut(L"MarioIcon is null!\n");
 	}
 	else
 		mario->SetState(MARIO_STATE_IDLE);

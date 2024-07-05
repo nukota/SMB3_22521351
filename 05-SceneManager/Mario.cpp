@@ -18,6 +18,7 @@
 #include "fireball.h"
 #include "Prize.h"
 #include "Spawner.h"
+#include "Leaf.h"
 
 #include "Collision.h"
 
@@ -79,6 +80,8 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		OnCollisionWithMysteryBox(e);
 	else if (dynamic_cast<CMushRoom*>(e->obj))
 		OnCollisionWithMushRoom(e);
+	else if (dynamic_cast<CLeaf*>(e->obj))
+		OnCollisionWithLeaf(e);
 	else if (dynamic_cast<CKoopas*>(e->obj))
 		OnCollisionWithKoopas(e);
 	else if (dynamic_cast<CWingGoomba*>(e->obj))
@@ -114,7 +117,12 @@ void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
 		{
 			if (goomba->GetState() != GOOMBA_STATE_DIE)
 			{
-				if (level > MARIO_LEVEL_SMALL)
+				if (level == MARIO_LEVEL_RACCOON)
+				{
+					level = MARIO_LEVEL_BIG;
+					StartUntouchable();
+				}
+				else if (level == MARIO_LEVEL_BIG) 
 				{
 					level = MARIO_LEVEL_SMALL;
 					StartUntouchable();
@@ -165,10 +173,23 @@ void CMario::OnCollisionWithMushRoom(LPCOLLISIONEVENT e)
 	e->obj->Delete();
 	if (level == MARIO_LEVEL_SMALL)
 	{
-		StartUntouchable();
 		y -= 8;
 		level = MARIO_LEVEL_BIG;
 		StartUntouchable();
+	}
+}
+
+void CMario::OnCollisionWithLeaf(LPCOLLISIONEVENT e)
+{
+	e->obj->Delete();
+	if (level == MARIO_LEVEL_BIG)
+	{
+		y -= 2;
+		level = MARIO_LEVEL_RACCOON;
+		StartUntouchable();
+	}
+	else {
+
 	}
 }
 
@@ -186,7 +207,12 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e)
 		} 
 		else if (untouchable == 0)
 		{
-			if (level > MARIO_LEVEL_SMALL)
+			if (level == MARIO_LEVEL_RACCOON)
+			{
+				level = MARIO_LEVEL_BIG;
+				StartUntouchable();
+			}
+			else if (level == MARIO_LEVEL_BIG)
 			{
 				level = MARIO_LEVEL_SMALL;
 				StartUntouchable();
@@ -223,7 +249,12 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e)
 	{
 		if (untouchable == 0)
 		{
-			if (level > MARIO_LEVEL_SMALL)
+			if (level == MARIO_LEVEL_RACCOON)
+			{
+				level = MARIO_LEVEL_BIG;
+				StartUntouchable();
+			}
+			else if (level == MARIO_LEVEL_BIG)
 			{
 				level = MARIO_LEVEL_SMALL;
 				StartUntouchable();
@@ -250,7 +281,12 @@ void CMario::OnCollisionWithWingGoomba(LPCOLLISIONEVENT e)
 	{
 		if (untouchable == 0)
 		{
-			if (level > MARIO_LEVEL_SMALL)
+			if (level == MARIO_LEVEL_RACCOON)
+			{
+				level = MARIO_LEVEL_BIG;
+				StartUntouchable();
+			}
+			else if (level == MARIO_LEVEL_BIG)
 			{
 				level = MARIO_LEVEL_SMALL;
 				StartUntouchable();
@@ -275,7 +311,12 @@ void CMario::OnCollisionWithWingKoopas(LPCOLLISIONEVENT e)
 	{
 		if (untouchable == 0)
 		{
-			if (level > MARIO_LEVEL_SMALL)
+			if (level == MARIO_LEVEL_RACCOON)
+			{
+				level = MARIO_LEVEL_BIG;
+				StartUntouchable();
+			}
+			else if (level == MARIO_LEVEL_BIG)
 			{
 				level = MARIO_LEVEL_SMALL;
 				StartUntouchable();
@@ -296,7 +337,13 @@ void CMario::LoseLife(LPCOLLISIONEVENT e)
 	}
 	if (untouchable == 0)
 	{
-		if (level > MARIO_LEVEL_SMALL)
+		if (level == MARIO_LEVEL_RACCOON)
+		{
+			vy = -MARIO_JUMP_DEFLECT_SPEED;
+			level = MARIO_LEVEL_BIG;
+			StartUntouchable();
+		}
+		else if (level == MARIO_LEVEL_BIG)
 		{
 			vy = -MARIO_JUMP_DEFLECT_SPEED;
 			level = MARIO_LEVEL_SMALL;
@@ -513,7 +560,7 @@ void CMario::Render()
 
 	animations->Get(aniId)->Render(x, y);
 
-	RenderBoundingBox();
+	//RenderBoundingBox();
 	
 	DebugOutTitle(L"Coins: %d", coin);
 }

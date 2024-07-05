@@ -11,7 +11,7 @@
 
 class CCurtain : public CGameObject {
 protected:
-	bool initial = false, settimer = false;
+	bool initial = false, settimer = false, createdSubObject = false;
 	ULONGLONG timer = 0;
 public:
 	CCurtain(float x, float y) : CGameObject(x, y) {}

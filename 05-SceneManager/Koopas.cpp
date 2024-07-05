@@ -2,6 +2,7 @@
 #include "Goomba.h"
 #include "WingGoomba.h"
 #include "WingKoopas.h"
+#include "MysteryBox.h"
 #include "debug.h"
 
 CKoopas::CKoopas(float x, float y) :CGameObject(x, y)
@@ -50,6 +51,19 @@ void CKoopas::OnCollisionWith(LPCOLLISIONEVENT e)
 		vy = 0;
 		//isOnPlatform = true;
 	}
+	if (state == KOOPAS_STATE_SPINNING) 
+	{
+		if (dynamic_cast<CKoopas*>(e->obj)) 
+			OnCollisionWithKoopas(e);
+		if (dynamic_cast<CGoomba*>(e->obj))
+			OnCollisionWithGoomba(e);
+		if (dynamic_cast<CWingGoomba*>(e->obj))
+			OnCollisionWithWingGoomba(e);
+		if (dynamic_cast<CWingKoopas*>(e->obj))
+			OnCollisionWithWingKoopas(e);
+		if (dynamic_cast<CMysteryBox*>(e->obj))
+			OnCollisionWithMysteryBox(e);
+	}
 	if (e->obj->IsBlocking()) {
 	if (e->ny != 0)
 		{
@@ -61,17 +75,7 @@ void CKoopas::OnCollisionWith(LPCOLLISIONEVENT e)
 		}
 	}
 	
-	if (state == KOOPAS_STATE_SPINNING) 
-	{
-		if (dynamic_cast<CKoopas*>(e->obj)) 
-			OnCollisionWithKoopas(e);
-		if (dynamic_cast<CGoomba*>(e->obj))
-			OnCollisionWithGoomba(e);
-		if (dynamic_cast<CWingGoomba*>(e->obj))
-			OnCollisionWithWingGoomba(e);
-		if (dynamic_cast<CWingKoopas*>(e->obj))
-			OnCollisionWithWingKoopas(e);
-	}
+	
 	
 }
 
@@ -101,6 +105,14 @@ void CKoopas::OnCollisionWithWingKoopas(LPCOLLISIONEVENT e)
 	CWingKoopas* wingkoopas = dynamic_cast<CWingKoopas*>(e->obj);
 	wingkoopas->SetState(WINGKOOPAS_STATE_DIE_2);
 }
+void CKoopas::OnCollisionWithMysteryBox(LPCOLLISIONEVENT e)
+{
+	CMysteryBox* mysterybox = (CMysteryBox*)(e->obj);
+	if (e->ny == 0 && mysterybox->GetState() == MYSTERYBOX_STATE_FIRST) {
+		mysterybox->SetState(MYSTERYBOX_STATE_TAKEN);
+	}
+}
+
 
 void CKoopas::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {

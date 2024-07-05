@@ -20,6 +20,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath):
 	CScene(id, filePath)
 {
 	player = NULL;
+	playericon = NULL;
 	key_handler = new CSampleKeyHandler(this);
 }
 
@@ -118,6 +119,17 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 
 		DebugOut(L"[INFO] Player object has been created!\n");
 		break;
+	case OBJECT_TYPE_MARIOICON: 
+		if (playericon != NULL)
+		{
+			DebugOut(L"[ERROR] MARIOICON object was created before!\n");
+			return;
+		}
+		obj = new CMarioIcon(x, y); 
+		playericon = (CMarioIcon*)obj; 
+
+		DebugOut(L"[INFO] PlayerIcon object has been created!\n");
+		break;
 	case OBJECT_TYPE_GOOMBA: obj = new CGoomba(x,y); break;
 	case OBJECT_TYPE_BRICK: obj = new CBrick(x,y); break;
 	case OBJECT_TYPE_COIN: obj = new CCoin(x, y); break;
@@ -167,10 +179,48 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_SPAWNER3: obj = new CSpawner(x, y, 3); break;
 	case OBJECT_TYPE_SPAWNER4: obj = new CSpawner(x, y, 4); break;
 	case OBJECT_TYPE_LEAF: obj = new CLeaf(x, y); break;
-
+	case OBJECT_TYPE_BORDER: obj = new CBorder(x, y); break;
+	case OBJECT_TYPE_MOVINGBUSH: obj = new CMovingBush(x, y); break;
+	case OBJECT_TYPE_ROCK: obj = new CRock(x, y); break;
+	case OBJECT_TYPE_PATH1: obj = new CPath(x, y, 1); break;
+	case OBJECT_TYPE_PATH2: obj = new CPath(x, y, 2); break;
+	case OBJECT_TYPE_PATH3: obj = new CPath(x, y, 3); break;
+	case OBJECT_TYPE_PATH4: obj = new CPath(x, y, 4); break;
+	case OBJECT_TYPE_PATH5: obj = new CPath(x, y, 5); break;
+	case OBJECT_TYPE_PATH6: obj = new CPath(x, y, 6); break;
+	case OBJECT_TYPE_RIVER1: obj = new CRiver(x, y, 1); break;
+	case OBJECT_TYPE_RIVER2: obj = new CRiver(x, y, 2); break;
+	case OBJECT_TYPE_RIVER3: obj = new CRiver(x, y, 3); break;
+	case OBJECT_TYPE_RIVER4: obj = new CRiver(x, y, 4); break;
+	case OBJECT_TYPE_RIVER5: obj = new CRiver(x, y, 5); break;
+	case OBJECT_TYPE_RIVER6: obj = new CRiver(x, y, 6); break;
+	case OBJECT_TYPE_RIVER7: obj = new CRiver(x, y, 7); break;
+	case OBJECT_TYPE_RIVER8: obj = new CRiver(x, y, 8); break;
+	case OBJECT_TYPE_RIVER9: obj = new CRiver(x, y, 9); break;
+	case OBJECT_TYPE_RIVER10: obj = new CRiver(x, y, 10); break;
+	case OBJECT_TYPE_RIVER11: obj = new CRiver(x, y, 11); break;
+	case OBJECT_TYPE_RIVER12: obj = new CRiver(x, y, 12); break;
+	case OBJECT_TYPE_RIVER13: obj = new CRiver(x, y, 13); break;
+	case OBJECT_TYPE_RIVER14: obj = new CRiver(x, y, 14); break;
+	case OBJECT_TYPE_RIVER15: obj = new CRiver(x, y, 15); break;
+	case OBJECT_TYPE_RIVER16: obj = new CRiver(x, y, 16); break;
+	case OBJECT_TYPE_DESTINATION1: obj = new CDestination(x, y, 1); break;
+	case OBJECT_TYPE_DESTINATION2: obj = new CDestination(x, y, 2); break;
+	case OBJECT_TYPE_DESTINATION3: obj = new CDestination(x, y, 3); break;
+	case OBJECT_TYPE_DESTINATION4: obj = new CDestination(x, y, 4); break;
+	case OBJECT_TYPE_DESTINATION5: obj = new CDestination(x, y, 5); break;
+	case OBJECT_TYPE_DESTINATION6: obj = new CDestination(x, y, 6); break;
+	case OBJECT_TYPE_DESTINATION7: obj = new CDestination(x, y, 7); break;
+	case OBJECT_TYPE_DESTINATION8: obj = new CDestination(x, y, 8); break;
+	case OBJECT_TYPE_DESTINATION9: obj = new CDestination(x, y, 9); break;
+	case OBJECT_TYPE_DESTINATION10: obj = new CDestination(x, y, 10); break;
+	case OBJECT_TYPE_DESTINATION11: obj = new CDestination(x, y, 11); break;
+	case OBJECT_TYPE_DESTINATION12: obj = new CDestination(x, y, 12); break;
+	case OBJECT_TYPE_DESTINATION13: obj = new CDestination(x, y, 13); break;
+	case OBJECT_TYPE_DESTINATION14: obj = new CDestination(x, y, 14); break;
+	case OBJECT_TYPE_DESTINATION15: obj = new CDestination(x, y, 15); break;
 	case OBJECT_TYPE_PLATFORM:
 	{
-
 		float cell_width = (float)atof(tokens[3].c_str());
 		float cell_height = (float)atof(tokens[4].c_str());
 		int length = atoi(tokens[5].c_str());
@@ -345,7 +395,7 @@ void CPlayScene::Update(DWORD dt)
 	}
 
 	// skip the rest if scene was already unloaded (Mario::Update might trigger PlayScene::Unload)
-	if (player == NULL) return; 
+	if (player == NULL) return;
 
 	PurgeDeletedObjects();
 }
@@ -382,6 +432,7 @@ void CPlayScene::Unload()
 
 	objects.clear();
 	player = NULL;
+	playericon = NULL;
 
 	DebugOut(L"[INFO] Scene %d unloaded! \n", id);
 }

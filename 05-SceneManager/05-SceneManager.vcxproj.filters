@@ -25,11 +25,11 @@
     <Filter Include="Source Files\FirstSceneObject">
       <UniqueIdentifier>{cee9dee5-6700-44d5-a24c-d71ad9a30b49}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\ColorBoxes">
-      <UniqueIdentifier>{c56eacbe-7439-47b2-bcea-445c1dab59d3}</UniqueIdentifier>
+    <Filter Include="Header Files\Map">
+      <UniqueIdentifier>{96a3a042-074a-4a34-b527-85463eb3c29f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\ColorBoxes">
-      <UniqueIdentifier>{3d50892c-57e4-44dd-958e-03a5c3a543d4}</UniqueIdentifier>
+    <Filter Include="Source Files\Map">
+      <UniqueIdentifier>{17c28cb7-38f4-4bf2-8e8b-ab26c47f91b4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -111,9 +111,6 @@
     <ClCompile Include="Cloud.cpp">
       <Filter>Source Files\BackGroundObjects</Filter>
     </ClCompile>
-    <ClCompile Include="ColorBox.cpp">
-      <Filter>Source Files\ColorBoxes</Filter>
-    </ClCompile>
     <ClCompile Include="Wood.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -178,6 +175,36 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Spawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HammerBro.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="River.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Path.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Border.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Destination.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Rock.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingBush.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="MarioIcon.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="SmileCloud.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -269,9 +296,6 @@
     <ClInclude Include="Cloud.h">
       <Filter>Header Files\BackGroundObjects</Filter>
     </ClInclude>
-    <ClInclude Include="ColorBox.h">
-      <Filter>Header Files\ColorBoxes</Filter>
-    </ClInclude>
     <ClInclude Include="Wood.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -335,13 +359,40 @@
     <ClInclude Include="GreenKoopas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ColorBoxesID.h">
-      <Filter>Header Files\ColorBoxes</Filter>
-    </ClInclude>
     <ClInclude Include="Leaf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Spawner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingBush.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Path.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Rock.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Destination.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="HammerBro.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Border.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="River.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="MarioIcon.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="SmileCloud.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

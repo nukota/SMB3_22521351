@@ -27,6 +27,7 @@ pakkunflower3.txt
 fireball.txt
 spawner.txt
 leaf.txt
+marioicon.txt
 
 #
 [OBJECTS]
@@ -39,6 +40,8 @@ leaf.txt
 #	40 = BlackBackground.      
 # See OBJECT_TYPE constants in AssetIDs.h
 
+#MarioIcon
+#120 	0	0
 
 #Cloud
 13	140	60
