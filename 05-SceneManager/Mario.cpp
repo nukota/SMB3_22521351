@@ -356,9 +356,8 @@ void CMario::LoseLife(LPCOLLISIONEVENT e)
 		}
 	}
 }
-//
+
 // Get animation ID for small Mario
-//
 int CMario::GetAniIdSmall()
 {
 	int aniId = -1;
@@ -417,10 +416,7 @@ int CMario::GetAniIdSmall()
 	return aniId;
 }
 
-
-//
 // Get animdation ID for big Mario
-//
 int CMario::GetAniIdBig()
 {
 	int aniId = -1;
@@ -459,25 +455,24 @@ int CMario::GetAniIdBig()
 			{
 				if (ax < 0)
 					aniId = ID_ANI_MARIO_BRACE_RIGHT;
-				else if (ax == MARIO_ACCEL_RUN_X)
+				else if (abs(vx) >= MARIO_ACCEL_SPEED)
 					aniId = ID_ANI_MARIO_RUNNING_RIGHT;
-				else if (ax == MARIO_ACCEL_WALK_X)
-					aniId = ID_ANI_MARIO_WALKING_RIGHT;
+				else aniId = ID_ANI_MARIO_WALKING_RIGHT;
 			}
 			else // vx < 0
 			{
 				if (ax > 0)
 					aniId = ID_ANI_MARIO_BRACE_LEFT;
-				else if (ax == -MARIO_ACCEL_RUN_X)
+				else if (abs(vx) >= MARIO_ACCEL_SPEED)
 					aniId = ID_ANI_MARIO_RUNNING_LEFT;
-				else if (ax == -MARIO_ACCEL_WALK_X)
-					aniId = ID_ANI_MARIO_WALKING_LEFT;
+				else aniId = ID_ANI_MARIO_WALKING_LEFT;
 			}
 
 	if (aniId == -1) aniId = ID_ANI_MARIO_IDLE_RIGHT;
 
 	return aniId;
 }
+
 //Ger aniId for Racoon Mario
 int CMario::GetAniIdRaccoon()
 {
@@ -524,19 +519,17 @@ int CMario::GetAniIdRaccoon()
 			{
 				if (ax < 0)
 					aniId = ID_ANI_MARIO_RACCOON_BRACE_RIGHT;
-				else if (ax == MARIO_ACCEL_RUN_X)
+				else if (abs(vx) >= MARIO_ACCEL_SPEED)
 					aniId = ID_ANI_MARIO_RACCOON_RUNNING_RIGHT;
-				else if (ax == MARIO_ACCEL_WALK_X)
-					aniId = ID_ANI_MARIO_RACCOON_WALKING_RIGHT;
+				else aniId = ID_ANI_MARIO_RACCOON_WALKING_RIGHT;
 			}
 			else // vx < 0
 			{
 				if (ax > 0)
 					aniId = ID_ANI_MARIO_RACCOON_BRACE_LEFT;
-				else if (ax == -MARIO_ACCEL_RUN_X)
+				else if (abs(vx) >= MARIO_ACCEL_SPEED)
 					aniId = ID_ANI_MARIO_RACCOON_RUNNING_LEFT;
-				else if (ax == -MARIO_ACCEL_WALK_X)
-					aniId = ID_ANI_MARIO_RACCOON_WALKING_LEFT;
+				else aniId = ID_ANI_MARIO_RACCOON_WALKING_LEFT;
 			}
 
 	if (aniId == -1) aniId = ID_ANI_MARIO_RACCOON_IDLE_RIGHT;
@@ -568,19 +561,19 @@ void CMario::Render()
 void CMario::SetState(int state)
 {
 	// DIE is the end state, cannot be changed! 
-	if (this->state == MARIO_STATE_DIE) return; 
+	if (this->state == MARIO_STATE_DIE) return;
 
 	switch (state)
 	{
 	case MARIO_STATE_RUNNING_RIGHT:
 		if (isSitting) break;
-		maxVx = MARIO_RUNNING_SPEED;
+		maxVx = MARIO_ACCEL_SPEED;
 		ax = MARIO_ACCEL_RUN_X;
 		nx = 1;
 		break;
 	case MARIO_STATE_RUNNING_LEFT:
 		if (isSitting) break;
-		maxVx = -MARIO_RUNNING_SPEED;
+		maxVx = -MARIO_ACCEL_SPEED;
 		ax = -MARIO_ACCEL_RUN_X;
 		nx = -1;
 		break;
@@ -600,10 +593,14 @@ void CMario::SetState(int state)
 		if (isSitting) break;
 		if (isOnPlatform)
 		{
-			if (abs(this->vx) == MARIO_RUNNING_SPEED)
+			if (abs(this->vx) == MARIO_ACCEL_SPEED)
 				vy = -MARIO_JUMP_RUN_SPEED_Y;
 			else
 				vy = -MARIO_JUMP_SPEED_Y;
+		}
+		else if (level == MARIO_LEVEL_RACCOON)
+		{
+			vy = 0.05f;
 		}
 		break;
 
@@ -617,7 +614,7 @@ void CMario::SetState(int state)
 			state = MARIO_STATE_IDLE;
 			isSitting = true;
 			vx = 0; vy = 0.0f;
-			y +=MARIO_SIT_HEIGHT_ADJUST;
+			y += MARIO_SIT_HEIGHT_ADJUST;
 		}
 		break;
 
@@ -640,8 +637,12 @@ void CMario::SetState(int state)
 		vx = 0;
 		ax = 0;
 		break;
+	
+	case MARIO_STATE_SLOWFALL:
+		if (level != MARIO_LEVEL_RACCOON) break;
+		vy = 0.02f;
+		break;
 	}
-
 	CGameObject::SetState(state);
 }
 

@@ -7,10 +7,10 @@
 #include "debug.h"
 
 #define MARIO_WALKING_SPEED		0.1f
-#define MARIO_RUNNING_SPEED		0.18f
+#define MARIO_ACCEL_SPEED	0.22f
 
 #define MARIO_ACCEL_WALK_X	0.0005f
-#define MARIO_ACCEL_RUN_X	0.0007f
+#define MARIO_ACCEL_RUN_X	0.0002f
 
 #define MARIO_JUMP_SPEED_Y		0.55f
 #define MARIO_JUMP_RUN_SPEED_Y	0.7f
@@ -32,6 +32,9 @@
 
 #define MARIO_STATE_SIT				600
 #define MARIO_STATE_SIT_RELEASE		601
+
+#define MARIO_STATE_SLOWFALL		700
+#define MARIO_STATE_FLY				701
 
 
 #pragma region ANIMATION_ID
@@ -157,7 +160,6 @@ class CMario : public CGameObject
 	void OnCollisionWithWingKoopas(LPCOLLISIONEVENT e);
 	void LoseLife(LPCOLLISIONEVENT e = NULL);
 
-
 	int GetAniIdBig();
 	int GetAniIdSmall();
 	int GetAniIdRaccoon();
@@ -179,6 +181,7 @@ public:
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
 	void Render();
 	void SetState(int state);
+	//void StopAccelerate();
 
 	int IsCollidable()
 	{ 
@@ -192,6 +195,10 @@ public:
 
 	void SetLevel(int l);
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount64(); }
+	bool AtMaxSpeed() { return (abs(vx) == MARIO_ACCEL_SPEED); }
+	float GetVx() { return vx; }
+	float GetVy() { return vy; }
+	float GetLevel() { return level; }
 
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 };

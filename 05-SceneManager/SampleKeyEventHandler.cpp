@@ -62,7 +62,6 @@ void CSampleKeyHandler::KeyState(BYTE *states)
 	if (game->IsKeyDown(DIK_RIGHT))
 	{
 		if (marioIcon != NULL) marioIcon->SetState(2);
-		else DebugOut(L"MarioIcon is null!\n");
 		if (game->IsKeyDown(DIK_A))
 			mario->SetState(MARIO_STATE_RUNNING_RIGHT);
 		else
@@ -71,7 +70,6 @@ void CSampleKeyHandler::KeyState(BYTE *states)
 	else if (game->IsKeyDown(DIK_LEFT))
 	{
 		if (marioIcon != NULL) marioIcon->SetState(1);
-		else DebugOut(L"MarioIcon is null!\n");
 		if (game->IsKeyDown(DIK_A))
 			mario->SetState(MARIO_STATE_RUNNING_LEFT);
 		else
@@ -80,12 +78,10 @@ void CSampleKeyHandler::KeyState(BYTE *states)
 	else if (game->IsKeyDown(DIK_UP)) 
 	{
 		if (marioIcon != NULL) marioIcon->SetState(3);
-		else DebugOut(L"MarioIcon is null!\n");
 	}
 	else if (game->IsKeyDown(DIK_DOWN))
 	{
 		if (marioIcon != NULL) marioIcon->SetState(4);
-		else DebugOut(L"MarioIcon is null!\n");
 	}
 	else
 		mario->SetState(MARIO_STATE_IDLE);

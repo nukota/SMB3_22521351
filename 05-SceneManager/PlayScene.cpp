@@ -372,14 +372,18 @@ void CPlayScene::Update(DWORD dt)
 	cx -= game->GetBackBufferWidth() / 2;
 	cy -= game->GetBackBufferHeight() / 2;
 
-
+	
 	if (CGame::GetInstance()->GetCurrentScene()->id == 5) cx = 0;
 	else {
 		if (cx < 0) cx = 0;
 		if (cx > 2545) cx = 2545;
 	}
-	
-	CGame::GetInstance()->SetCamPos(cx, 180);
+	if (CGame::GetInstance()->GetCurrentScene()->id == 1 && yMario < 60) {
+		CGame::GetInstance()->SetCamPos(cx, cy + 30);
+		DebugOut(L"%f\n", cy);
+	}
+		
+	else CGame::GetInstance()->SetCamPos(cx, 0);
 
 	size_t i = 0;
 	while (i < objects.size())
