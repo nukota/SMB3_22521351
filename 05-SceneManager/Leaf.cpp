@@ -56,7 +56,6 @@ void CLeaf::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 				vx = -LEAF_FALL_SPEED_X;
 				vy = LEAF_FALL_SPEED_Y;
 				SetState(LEAF_STATE_LEFT);
-				DebugOut(L"ayo!\n");
 			}
 			ax = LEAF_FALL_AIR_RESISTANT;
 		}

@@ -160,6 +160,7 @@ void CKoopas::SetState(int state)
 		vx = -KOOPAS_WALKING_SPEED;
 		break;
 	case KOOPAS_STATE_SPINNING:
+		y -= 4;
 		break;
 	case KOOPAS_STATE_IDLE:
 		y -= 6;

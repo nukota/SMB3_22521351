@@ -8,6 +8,8 @@
 
 #define MARIO_WALKING_SPEED		0.1f
 #define MARIO_ACCEL_SPEED	0.22f
+#define MARIO_SLOWFALL_SPEED	0.005f
+#define MARIO_FLY_SPEED	0.1f
 
 #define MARIO_ACCEL_WALK_X	0.0005f
 #define MARIO_ACCEL_RUN_X	0.0002f
@@ -105,6 +107,9 @@
 
 #define ID_ANI_MARIO_RACCOON_BRACE_RIGHT 2610
 #define ID_ANI_MARIO_RACCOON_BRACE_LEFT 2620
+
+#define ID_ANI_MARIO_RACCOON_SLOWFALL_RIGHT 2710
+#define ID_ANI_MARIO_RACCOON_SLOWFALL_LEFT 2720
 #pragma endregion
 
 #define GROUND_Y 160.0f
@@ -144,7 +149,7 @@ class CMario : public CGameObject
 	int level; 
 	int untouchable; 
 	ULONGLONG untouchable_start;
-	BOOLEAN isOnPlatform;
+	
 	int coin; 
 
 	void OnCollisionWithGoomba(LPCOLLISIONEVENT e);
@@ -165,6 +170,7 @@ class CMario : public CGameObject
 	int GetAniIdRaccoon();
 
 public:
+	BOOLEAN isOnPlatform, slowfall = false, fly = false;
 	CMario(float x, float y) : CGameObject(x, y)
 	{
 		isSitting = false;
@@ -195,7 +201,7 @@ public:
 
 	void SetLevel(int l);
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount64(); }
-	bool AtMaxSpeed() { return (abs(vx) == MARIO_ACCEL_SPEED); }
+	bool AtMaxSpeed() { return (abs(vx) >= MARIO_ACCEL_SPEED); } 
 	float GetVx() { return vx; }
 	float GetVy() { return vy; }
 	float GetLevel() { return level; }

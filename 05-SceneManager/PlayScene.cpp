@@ -364,6 +364,9 @@ void CPlayScene::Update(DWORD dt)
 		coObjects.push_back(objects[i]);
 	}
 	
+	// skip the rest if scene was already unloaded (Mario::Update might trigger PlayScene::Unload)
+	if (player == NULL) return;
+
 	// Update camera to follow mario
 	float cx, cy;
 	player->GetPosition(cx, cy);
@@ -373,16 +376,15 @@ void CPlayScene::Update(DWORD dt)
 	cy -= game->GetBackBufferHeight() / 2;
 
 	
-	if (CGame::GetInstance()->GetCurrentScene()->id == 5) cx = 0;
+	if (CGame::GetInstance()->GetCurrentScene()->id == 5 || CGame::GetInstance()->GetCurrentScene()->id == 2) cx = 0;
 	else {
 		if (cx < 0) cx = 0;
 		if (cx > 2545) cx = 2545;
 	}
-	if (CGame::GetInstance()->GetCurrentScene()->id == 1 && yMario < 60) {
-		CGame::GetInstance()->SetCamPos(cx, cy + 30);
-		DebugOut(L"%f\n", cy);
+	if (CGame::GetInstance()->GetCurrentScene()->id == 1 && cy < -40) {
+		CGame::GetInstance()->SetCamPos(cx, cy + 40);
 	}
-		
+
 	else CGame::GetInstance()->SetCamPos(cx, 0);
 
 	size_t i = 0;
@@ -391,9 +393,9 @@ void CPlayScene::Update(DWORD dt)
 		objects[i]->Update(dt, &coObjects);
 		
 		//delete objects that get out of camera
-		if (objects[i]->DeleteOffCamera()) {
-			if (objects[i]->x - 150 < cx || objects[i]->x + 150 > cx) {  DebugOut(L"delete object %f\n", objects[i]->x); objects[i]->Delete(); }
-		}
+		//if (objects[i]->DeleteOffCamera()) {
+		//	if (objects[i]->x - 150 < cx || objects[i]->x + 150 > cx) {  DebugOut(L"delete object %f\n", objects[i]->x); objects[i]->Delete(); }
+		//}
 
 		//spawn sub object
 		if (objects[i]->CreateSubObject) {
@@ -405,9 +407,6 @@ void CPlayScene::Update(DWORD dt)
 		}
 		i++;
 	}
-
-	// skip the rest if scene was already unloaded (Mario::Update might trigger PlayScene::Unload)
-	if (player == NULL) return;
 
 	PurgeDeletedObjects();
 }

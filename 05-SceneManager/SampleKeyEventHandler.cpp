@@ -18,6 +18,8 @@ void CSampleKeyHandler::OnKeyDown(int KeyCode)
 		mario->SetState(MARIO_STATE_SIT);
 		break;
 	case DIK_S:
+		if (mario->GetState() == MARIO_STATE_FLY)
+			mario->SetState(MARIO_STATE_FLY);
 		mario->SetState(MARIO_STATE_JUMP);
 		break;
 	case DIK_1:
@@ -28,6 +30,9 @@ void CSampleKeyHandler::OnKeyDown(int KeyCode)
 		break;
 	case DIK_0:
 		mario->SetState(MARIO_STATE_DIE);
+		break;
+	case DIK_3:
+		mario->SetLevel(MARIO_LEVEL_RACCOON);
 		break;
 	case DIK_R: // reset
 		//Reload();
@@ -43,9 +48,11 @@ void CSampleKeyHandler::OnKeyUp(int KeyCode)
 	switch (KeyCode)
 	{
 	case DIK_S:
-		if (CGame::GetInstance()->GetCurrentScene()->id = 2) 
+		if (CGame::GetInstance()->GetCurrentScene()->id == 2) 
 			CGame::GetInstance()->InitiateSwitchScene(1);
 		mario->SetState(MARIO_STATE_RELEASE_JUMP);
+		mario->slowfall = false;
+		mario->fly = false;
 		break;
 	case DIK_DOWN:
 		mario->SetState(MARIO_STATE_SIT_RELEASE);
@@ -58,7 +65,15 @@ void CSampleKeyHandler::KeyState(BYTE *states)
 	LPGAME game = CGame::GetInstance();
 	CMario* mario = (CMario*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 	CMarioIcon* marioIcon = (CMarioIcon*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayerIcon();
-
+	
+	if (game->IsKeyDown(DIK_S) && mario->GetLevel() == MARIO_LEVEL_RACCOON && !mario->isOnPlatform) {
+		if (abs(mario->GetVx()) >= MARIO_ACCEL_SPEED - 0.04f) 
+			mario->SetState(MARIO_STATE_FLY);
+			
+		else if (mario->GetVy() > 0)
+			mario->SetState(MARIO_STATE_SLOWFALL);
+	}
+		
 	if (game->IsKeyDown(DIK_RIGHT))
 	{
 		if (marioIcon != NULL) marioIcon->SetState(2);
@@ -75,14 +90,7 @@ void CSampleKeyHandler::KeyState(BYTE *states)
 		else
 			mario->SetState(MARIO_STATE_WALKING_LEFT);
 	}
-	else if (game->IsKeyDown(DIK_UP)) 
-	{
-		if (marioIcon != NULL) marioIcon->SetState(3);
-	}
-	else if (game->IsKeyDown(DIK_DOWN))
-	{
-		if (marioIcon != NULL) marioIcon->SetState(4);
-	}
+	
 	else
 		mario->SetState(MARIO_STATE_IDLE);
 }

@@ -19,6 +19,10 @@
 #include "Prize.h"
 #include "Spawner.h"
 #include "Leaf.h"
+#include "PipeAbove.h"
+#include "Pipe2.h"
+#include "Brick.h"
+#include "Brick2.h"
 
 #include "Collision.h"
 
@@ -479,7 +483,7 @@ int CMario::GetAniIdRaccoon()
 	int aniId = -1;
 	if (!isOnPlatform)
 	{
-		if (abs(ax) == MARIO_ACCEL_RUN_X)
+		if (abs(vx) >= MARIO_ACCEL_SPEED)
 		{
 			if (nx >= 0) {
 				if (vy >= 0)
@@ -495,10 +499,18 @@ int CMario::GetAniIdRaccoon()
 		}
 		else
 		{
-			if (nx >= 0)
-				aniId = ID_ANI_MARIO_RACCOON_JUMP_WALK_RIGHT;
-			else
-				aniId = ID_ANI_MARIO_RACCOON_JUMP_WALK_LEFT;
+
+			if (nx >= 0) {
+				if (slowfall) 
+					aniId = ID_ANI_MARIO_RACCOON_SLOWFALL_RIGHT;
+				else aniId = ID_ANI_MARIO_RACCOON_JUMP_WALK_RIGHT;
+					
+			}
+			else {
+				if (slowfall)
+					aniId = ID_ANI_MARIO_RACCOON_SLOWFALL_LEFT;
+				else aniId = ID_ANI_MARIO_RACCOON_JUMP_WALK_LEFT;
+			}
 		}
 	}
 	else
@@ -614,7 +626,7 @@ void CMario::SetState(int state)
 			state = MARIO_STATE_IDLE;
 			isSitting = true;
 			vx = 0; vy = 0.0f;
-			y += MARIO_SIT_HEIGHT_ADJUST;
+			y += MARIO_SIT_HEIGHT_ADJUST - 4;
 		}
 		break;
 
@@ -639,10 +651,20 @@ void CMario::SetState(int state)
 		break;
 	
 	case MARIO_STATE_SLOWFALL:
-		if (level != MARIO_LEVEL_RACCOON) break;
-		vy = 0.02f;
+		if (isSitting) break;
+		slowfall = true;
+		vy = MARIO_SLOWFALL_SPEED;
+		ay = 0;
+		break;
+	case MARIO_STATE_FLY:
+		if (isSitting) break;
+		if (vy > -MARIO_FLY_SPEED)
+			vy = -MARIO_FLY_SPEED;
+		fly = true;
+		ay = 0;
 		break;
 	}
+	if (state != MARIO_STATE_SLOWFALL && state != MARIO_STATE_FLY) ay = MARIO_GRAVITY;
 	CGameObject::SetState(state);
 }
 
@@ -698,6 +720,7 @@ void CMario::SetLevel(int l)
 	{
 		y -= (MARIO_BIG_BBOX_HEIGHT - MARIO_SMALL_BBOX_HEIGHT) / 2;
 	}
+	if (l == MARIO_LEVEL_RACCOON) y -= 10;
 	level = l;
 }
 
