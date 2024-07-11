@@ -12,7 +12,7 @@
 #define ID_STATE_ORANGE 3
 #define BACKGROUND_WIDTH 305
 #define BACKGROUND_BBOX_WIDTH 305
-#define BACKGROUND_BBOX_HEIGHT 187
+#define BACKGROUND_BBOX_HEIGHT 219
 
 class CBackground : public CGameObject {
 protected:

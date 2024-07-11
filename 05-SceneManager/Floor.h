@@ -7,7 +7,7 @@
 #define ID_ANI_FLOOR 54000
 #define FLOOR_WIDTH 305
 #define FLOOR_BBOX_WIDTH 305
-#define FLOOR_BBOX_HEIGHT 37
+#define FLOOR_BBOX_HEIGHT 41
 
 class CFloor : public CGameObject {
 public:

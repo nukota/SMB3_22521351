@@ -216,6 +216,12 @@
     <ClCompile Include="Decoration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Number.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -411,6 +417,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pipe2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Number.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

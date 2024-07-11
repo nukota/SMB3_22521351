@@ -3,6 +3,8 @@
 #include "WingGoomba.h"
 #include "WingKoopas.h"
 #include "MysteryBox.h"
+#include "Brick.h"
+#include "Brick2.h"
 #include "debug.h"
 
 CKoopas::CKoopas(float x, float y) :CGameObject(x, y)
@@ -55,15 +57,20 @@ void CKoopas::OnCollisionWith(LPCOLLISIONEVENT e)
 	{
 		if (dynamic_cast<CKoopas*>(e->obj)) 
 			OnCollisionWithKoopas(e);
-		if (dynamic_cast<CGoomba*>(e->obj))
+		else if (dynamic_cast<CGoomba*>(e->obj))
 			OnCollisionWithGoomba(e);
-		if (dynamic_cast<CWingGoomba*>(e->obj))
+		else if (dynamic_cast<CWingGoomba*>(e->obj))
 			OnCollisionWithWingGoomba(e);
-		if (dynamic_cast<CWingKoopas*>(e->obj))
+		else if (dynamic_cast<CWingKoopas*>(e->obj))
 			OnCollisionWithWingKoopas(e);
-		if (dynamic_cast<CMysteryBox*>(e->obj))
+		else if (dynamic_cast<CMysteryBox*>(e->obj))
 			OnCollisionWithMysteryBox(e);
+		else if (dynamic_cast<CBrick*>(e->obj))
+			OnCollisionWithBrick(e);
+		else if (dynamic_cast<CBrick2*>(e->obj))
+			OnCollisionWithBrick2(e);
 	}
+	
 	if (e->obj->IsBlocking()) {
 	if (e->ny != 0)
 		{
@@ -110,6 +117,22 @@ void CKoopas::OnCollisionWithMysteryBox(LPCOLLISIONEVENT e)
 	CMysteryBox* mysterybox = (CMysteryBox*)(e->obj);
 	if (e->ny == 0 && mysterybox->GetState() == MYSTERYBOX_STATE_FIRST) {
 		mysterybox->SetState(MYSTERYBOX_STATE_TAKEN);
+	}
+}
+void CKoopas::OnCollisionWithBrick(LPCOLLISIONEVENT e)
+{
+	CBrick* brick = (CBrick*)(e->obj);
+	if (e->ny == 0) {
+		brick->Delete();
+		vx = -vx;
+	}
+}
+void CKoopas::OnCollisionWithBrick2(LPCOLLISIONEVENT e)
+{
+	CBrick2* brick2 = (CBrick2*)(e->obj);
+	if (e->ny == 0) {
+		brick2->Delete();
+		vx = -vx;
 	}
 }
 

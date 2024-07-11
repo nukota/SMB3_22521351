@@ -141,6 +141,7 @@
 
 class CMario : public CGameObject
 {
+protected:
 	BOOLEAN isSitting;
 	float maxVx;
 	float ax;				// acceleration on x 
@@ -163,6 +164,10 @@ class CMario : public CGameObject
 	void OnCollisionWithKoopas(LPCOLLISIONEVENT e);
 	void OnCollisionWithWingGoomba(LPCOLLISIONEVENT e);
 	void OnCollisionWithWingKoopas(LPCOLLISIONEVENT e);
+	void OnCollisionWithPipeAbove(LPCOLLISIONEVENT e);
+	void OnCollisionWithPipe2(LPCOLLISIONEVENT e);
+	void OnCollisionWithBrick(LPCOLLISIONEVENT e);
+	void OnCollisionWithBrick2(LPCOLLISIONEVENT e);
 	void LoseLife(LPCOLLISIONEVENT e = NULL);
 
 	int GetAniIdBig();

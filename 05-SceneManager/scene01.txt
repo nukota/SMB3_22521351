@@ -32,7 +32,7 @@ brick2.txt
 pipe2.txt
 smilecloud.txt
 decoration.txt
-
+ui.txt
 #
 [OBJECTS]
 # type	x	y	extra_settings per object type
@@ -599,6 +599,8 @@ decoration.txt
 #Leaf
 61	150	100
 
+#UI
+130	0	0
 
 
 

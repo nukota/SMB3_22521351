@@ -9,6 +9,7 @@ movingbush.txt
 destination.txt
 border.txt
 marioicon.txt
+ui.txt
 #
 [OBJECTS]
 # type	x	y	extra_settings per object type
@@ -216,3 +217,6 @@ marioicon.txt
 
 #MARIOICON
 #120	65	68
+
+#UI
+130 	0 	0

@@ -100,6 +100,14 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		LoseLife();
 	else if (dynamic_cast<CFireBall*>(e->obj))
 		LoseLife(e);
+	else if (dynamic_cast<CPipeAbove*>(e->obj))
+		OnCollisionWithPipeAbove(e);
+	else if (dynamic_cast<CPipe2*>(e->obj))
+		OnCollisionWithPipe2(e);
+	else if (dynamic_cast<CBrick*>(e->obj))
+		OnCollisionWithBrick(e);
+	else if (dynamic_cast<CBrick2*>(e->obj))
+		OnCollisionWithBrick2(e);
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e)
@@ -271,6 +279,7 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e)
 		}
 	}
 }
+
 void CMario::OnCollisionWithWingGoomba(LPCOLLISIONEVENT e)
 {
 	CWingGoomba* winggoomba = dynamic_cast<CWingGoomba*>(e->obj);
@@ -303,6 +312,7 @@ void CMario::OnCollisionWithWingGoomba(LPCOLLISIONEVENT e)
 		}
 	}
 }
+
 void CMario::OnCollisionWithWingKoopas(LPCOLLISIONEVENT e)
 {
 	CWingKoopas* wingkoopas = dynamic_cast<CWingKoopas*>(e->obj);
@@ -331,6 +341,44 @@ void CMario::OnCollisionWithWingKoopas(LPCOLLISIONEVENT e)
 				SetState(MARIO_STATE_DIE);
 			}
 		}
+	}
+}
+
+void CMario::OnCollisionWithPipeAbove(LPCOLLISIONEVENT e)
+{
+	if (e->ny < 0 && state == MARIO_STATE_SIT)
+	{
+		//temp
+		x = 2144; y = 250;
+	}
+}
+
+void CMario::OnCollisionWithPipe2(LPCOLLISIONEVENT e)
+{
+	if (e->ny > 0 && state == MARIO_STATE_JUMP)
+	{
+		//temp
+		x = 2370; y = 160;
+	}
+}
+
+void CMario::OnCollisionWithBrick(LPCOLLISIONEVENT e)
+{
+	CBrick* brick = dynamic_cast<CBrick*>(e->obj);
+	if (e->ny > 0 && state == MARIO_STATE_JUMP && level > MARIO_LEVEL_SMALL)
+	{
+		vx = -vx;
+		brick->Delete();
+	}
+}
+
+void CMario::OnCollisionWithBrick2(LPCOLLISIONEVENT e)
+{
+	CBrick2* brick2 = dynamic_cast<CBrick2*>(e->obj);
+	if (e->ny > 0 && state == MARIO_STATE_JUMP && level > MARIO_LEVEL_SMALL)
+	{
+		vx = -vx;
+		brick2->Delete();
 	}
 }
 
@@ -517,9 +565,9 @@ int CMario::GetAniIdRaccoon()
 		if (isSitting)
 		{
 			if (nx > 0)
-				aniId = ID_ANI_MARIO_SIT_RIGHT;
+				aniId = ID_ANI_MARIO_RACCOON_SIT_RIGHT;
 			else
-				aniId = ID_ANI_MARIO_SIT_LEFT;
+				aniId = ID_ANI_MARIO_RACCOON_SIT_LEFT;
 		}
 		else
 			if (vx == 0)

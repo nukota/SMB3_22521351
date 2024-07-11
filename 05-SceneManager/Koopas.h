@@ -44,6 +44,8 @@ protected:
 	virtual void OnCollisionWithKoopas(LPCOLLISIONEVENT e);
 	virtual void OnCollisionWithWingKoopas(LPCOLLISIONEVENT e);
 	virtual void OnCollisionWithMysteryBox(LPCOLLISIONEVENT e);
+	virtual void OnCollisionWithBrick(LPCOLLISIONEVENT e); 
+	virtual void OnCollisionWithBrick2(LPCOLLISIONEVENT e);
 
 public:
 	CKoopas(float x, float y);

@@ -179,6 +179,7 @@
     <ClCompile Include="MovingBush.cpp" />
     <ClCompile Include="MushRoom.cpp" />
     <ClCompile Include="MysteryBox.cpp" />
+    <ClCompile Include="Number.cpp" />
     <ClCompile Include="PakkunFlower1.cpp" />
     <ClCompile Include="PakkunFlower2.cpp" />
     <ClCompile Include="PakkunFlower3.cpp" />
@@ -202,6 +203,7 @@
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="TitleNumber.cpp" />
     <ClCompile Include="Tree.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="WarpPipe.cpp" />
     <ClCompile Include="WingGoomba.cpp" />
@@ -244,6 +246,7 @@
     <ClInclude Include="MovingBush.h" />
     <ClInclude Include="MushRoom.h" />
     <ClInclude Include="MysteryBox.h" />
+    <ClInclude Include="Number.h" />
     <ClInclude Include="PakkunFlower1.h" />
     <ClInclude Include="PakkunFlower2.h" />
     <ClInclude Include="PakkunFlower3.h" />
@@ -269,6 +272,7 @@
     <ClInclude Include="Title.h" />
     <ClInclude Include="TitleNumber.h" />
     <ClInclude Include="Tree.h" />
+    <ClInclude Include="UI.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="WarpPipe.h" />
     <ClInclude Include="WingGoomba.h" />
