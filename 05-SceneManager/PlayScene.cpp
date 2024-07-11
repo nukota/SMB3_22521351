@@ -227,6 +227,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_SMILECLOUD: obj = new CSmileCloud(x, y); break;
 	case OBJECT_TYPE_PIPE2: obj = new CPipe2(x, y); break;
 	case OBJECT_TYPE_UI: obj = new CUI(x, y); break;
+	case OBJECT_TYPE_NUMBER: obj = new CNumber(x, y); break;
 	case OBJECT_TYPE_PLATFORM:
 	{
 		float cell_width = (float)atof(tokens[3].c_str());

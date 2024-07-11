@@ -2,6 +2,7 @@
 //#include "main.cpp"	
 #include "debug.h"
 
+
 void CUI::Render()
 {
 	CAnimations* animations = CAnimations::GetInstance();
@@ -22,6 +23,12 @@ void CUI::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	CGame::GetInstance()->GetCamPos(cx, cy);
 	x = cx + 153;
 	y = cy + 228;
+	if (index <= 9 && CreateSubObject) {
+		subObject = new CNumber(x, y, 0);
+		//number.push_back(*subObject);
+		CreateSubObject = true;
+		index++;
+	}
 	CGameObject::Update(dt, coObjects);
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 }

@@ -38,6 +38,7 @@
 
 #define MARIO_STATE_SLOWFALL		700
 #define MARIO_STATE_FLY				701
+#define MARIO_STATE_FLYDOWN				702
 
 
 #pragma region ANIMATION_ID

@@ -47,6 +47,7 @@
 #include "Decoration.h"
 #include "SmileCloud.h"
 #include "UI.h"
+#include "Number.h"
 //#include "PakkunFlower1.h"
 
 

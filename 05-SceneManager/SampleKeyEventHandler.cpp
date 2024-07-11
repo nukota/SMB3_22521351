@@ -52,7 +52,10 @@ void CSampleKeyHandler::OnKeyUp(int KeyCode)
 	case DIK_S:
 		if (CGame::GetInstance()->GetCurrentScene()->id == 2) 
 			CGame::GetInstance()->InitiateSwitchScene(1);
-		mario->SetState(MARIO_STATE_RELEASE_JUMP);
+		if (!mario->fly) mario->SetState(MARIO_STATE_RELEASE_JUMP);
+		else {
+			mario->SetState(MARIO_STATE_FLYDOWN); DebugOut(L"done\n");
+		}
 		mario->slowfall = false;
 		mario->fly = false;
 		break;
@@ -69,7 +72,7 @@ void CSampleKeyHandler::KeyState(BYTE *states)
 	CMarioIcon* marioIcon = (CMarioIcon*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayerIcon();
 	
 	if (game->IsKeyDown(DIK_S) && mario->GetLevel() == MARIO_LEVEL_RACCOON && !mario->isOnPlatform) {
-		if (abs(mario->GetVx()) >= MARIO_ACCEL_SPEED - 0.03f && mario->GetVy() < 0)
+		if (abs(mario->GetVx()) >= MARIO_ACCEL_SPEED - 0.03f && (mario->GetVy() < 0 || mario->fly))
 			mario->SetState(MARIO_STATE_FLY);
 		else if (mario->slowfall) 
 			mario->SetState(MARIO_STATE_SLOWFALL);

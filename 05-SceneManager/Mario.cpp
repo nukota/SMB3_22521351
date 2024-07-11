@@ -59,12 +59,16 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 	{
 		vy = 0;
 		isOnPlatform = true;
+		fly = false;
 	}
 	else
 	if (e->ny != 0 && e->obj->IsBlocking())
 	{
 		vy = 0;
-		if (e->ny < 0) isOnPlatform = true;
+		if (e->ny < 0) {
+			isOnPlatform = true;
+			fly = false;
+		}
 	}
 	else 
 	if (e->nx != 0 && e->obj->IsBlocking())
@@ -536,13 +540,13 @@ int CMario::GetAniIdRaccoon()
 			if (nx >= 0) {
 				if (vy >= 0)
 					aniId = ID_ANI_MARIO_RACCOON_JUMP_RUN_RIGHT_DOWN;
-				else aniId = ID_ANI_MARIO_RACCOON_JUMP_RUN_RIGHT_UP;
+				else if (!slowfall) aniId = ID_ANI_MARIO_RACCOON_JUMP_RUN_RIGHT_UP;
 			}
 			else
 			{
 				if (vy >= 0)
 					aniId = ID_ANI_MARIO_RACCOON_JUMP_RUN_LEFT_DOWN;
-				else aniId = ID_ANI_MARIO_RACCOON_JUMP_RUN_LEFT_UP;
+				else if (!slowfall) aniId = ID_ANI_MARIO_RACCOON_JUMP_RUN_LEFT_UP;
 			}
 		}
 		else
@@ -702,17 +706,21 @@ void CMario::SetState(int state)
 		if (isSitting) break;
 		slowfall = true;
 		vy = MARIO_SLOWFALL_SPEED;
-		ay = 0;
 		break;
 	case MARIO_STATE_FLY:
 		if (isSitting) break;
 		if (vy > -MARIO_FLY_SPEED)
 			vy = -MARIO_FLY_SPEED;
 		fly = true;
-		ay = 0;
+		break;
+	case MARIO_STATE_FLYDOWN:
+		if (isSitting) break;
+			vy = MARIO_FLY_SPEED;
+		fly = true;
 		break;
 	}
-	if (state != MARIO_STATE_SLOWFALL && state != MARIO_STATE_FLY) ay = MARIO_GRAVITY;
+	if (state != MARIO_STATE_SLOWFALL && state != MARIO_STATE_FLY && state != MARIO_STATE_FLYDOWN) ay = MARIO_GRAVITY;
+	else ay = 0;
 	CGameObject::SetState(state);
 }
 
