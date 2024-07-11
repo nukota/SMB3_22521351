@@ -18,7 +18,9 @@ void CSampleKeyHandler::OnKeyDown(int KeyCode)
 		mario->SetState(MARIO_STATE_SIT);
 		break;
 	case DIK_S:
-		if (mario->GetState() == MARIO_STATE_FLY)
+		if (mario->GetLevel() == MARIO_LEVEL_RACCOON && !mario->isOnPlatform && mario->GetVy() > 0)
+			mario->SetState(MARIO_STATE_SLOWFALL);
+		else if (mario->GetState() == MARIO_STATE_FLY)
 			mario->SetState(MARIO_STATE_FLY);
 		mario->SetState(MARIO_STATE_JUMP);
 		break;
@@ -67,10 +69,9 @@ void CSampleKeyHandler::KeyState(BYTE *states)
 	CMarioIcon* marioIcon = (CMarioIcon*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayerIcon();
 	
 	if (game->IsKeyDown(DIK_S) && mario->GetLevel() == MARIO_LEVEL_RACCOON && !mario->isOnPlatform) {
-		if (abs(mario->GetVx()) >= MARIO_ACCEL_SPEED - 0.04f) 
+		if (abs(mario->GetVx()) >= MARIO_ACCEL_SPEED - 0.03f && mario->GetVy() < 0)
 			mario->SetState(MARIO_STATE_FLY);
-			
-		else if (mario->GetVy() > 0)
+		else if (mario->slowfall) 
 			mario->SetState(MARIO_STATE_SLOWFALL);
 	}
 		

@@ -41,7 +41,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		untouchable_start = 0;
 		untouchable = 0;
 	}
-
+		
 	isOnPlatform = false;
 
 	CCollision::GetInstance()->Process(this, dt, coObjects);
