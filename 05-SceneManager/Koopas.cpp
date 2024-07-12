@@ -13,14 +13,6 @@ CKoopas::CKoopas(float x, float y) :CGameObject(x, y)
 	this->ay = KOOPAS_GRAVITY;
 	SetState(KOOPAS_STATE_WALKING);
 }
-CKoopas::CKoopas(float x, float y, float border_left, float border_right) :CGameObject(x, y)
-{
-	this->ax = 0;
-	this->ay = KOOPAS_GRAVITY;
-	SetState(KOOPAS_STATE_WALKING);
-	this->border_left = border_left;
-	this->border_right = border_right;
-}
 
 void CKoopas::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
@@ -51,7 +43,7 @@ void CKoopas::OnCollisionWith(LPCOLLISIONEVENT e)
 	if (e->ny < 0 && e->obj->IsStair())
 	{
 		vy = 0;
-		//isOnPlatform = true;
+		isOnPlatform = true;
 	}
 	if (state == KOOPAS_STATE_SPINNING) 
 	{
@@ -75,15 +67,13 @@ void CKoopas::OnCollisionWith(LPCOLLISIONEVENT e)
 	if (e->ny != 0)
 		{
 			vy = 0;
+			isOnPlatform = true;
 		}
 		else if (e->nx != 0)
 		{
 			vx = -vx;
 		}
 	}
-	
-	
-	
 }
 
 void CKoopas::OnCollisionWithGoomba(LPCOLLISIONEVENT e) 
@@ -123,7 +113,7 @@ void CKoopas::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 {
 	CBrick* brick = (CBrick*)(e->obj);
 	if (e->ny == 0) {
-		brick->Delete();
+		brick->SetState(BRICK_STATE_DESTROYED);
 		vx = -vx;
 	}
 }
@@ -153,6 +143,17 @@ void CKoopas::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		}
 	}
 
+	if (state == KOOPAS_STATE_WALKING && !settimer && vy > 0.05f)
+	{
+		y -= 2;
+		x -= 4 * vx / abs(vx);
+		vx = -vx;
+		settimer = true;
+		timer = GetTickCount64();
+	}
+	if (GetTickCount64() - timer > 50) settimer = false;
+	isOnPlatform = false;
+	
 	CGameObject::Update(dt, coObjects);
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 }

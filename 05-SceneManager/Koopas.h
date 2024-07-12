@@ -25,6 +25,9 @@ class CKoopas : public CGameObject
 protected:
 	float ax;
 	float ay;
+	bool isOnPlatform, settimer = false;
+
+	ULONGLONG timer = 0;
 
 	float border_left = 0;
 	float border_right = 0;
@@ -49,7 +52,6 @@ protected:
 
 public:
 	CKoopas(float x, float y);
-	CKoopas(float x, float y, float border_left, float border_right);
 	virtual void SpinLeft();
 	virtual void SpinRight();
 	virtual void SetState(int state);

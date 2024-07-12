@@ -48,6 +48,7 @@
 #include "SmileCloud.h"
 #include "UI.h"
 #include "Number.h"
+#include "BrickFragment.h"
 //#include "PakkunFlower1.h"
 
 

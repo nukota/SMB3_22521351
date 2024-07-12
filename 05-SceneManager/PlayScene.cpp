@@ -160,8 +160,6 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_BLACKBACKGROUND: obj = new CBlackBackground(x, y); break;
 	case OBJECT_TYPE_PRIZE: obj = new CPrize(x, y); break;
 	case OBJECT_TYPE_KOOPAS: obj = new CKoopas(x, y); break;
-	case OBJECT_TYPE_KOOPAS_1: obj = new CKoopas(x, y, x - 35, x + 35); break;
-	case OBJECT_TYPE_KOOPAS_2: obj = new CKoopas(x, y, x - 10, x + 10); break;
 	case OBJECT_TYPE_GREENKOOPAS: obj = new CGreenKoopas(x, y); break;
 	case OBJECT_TYPE_WINGGOOMBA: obj = new CWingGoomba(x, y); break;
 	case OBJECT_TYPE_WINGKOOPAS: obj = new CWingKoopas(x, y); break;
@@ -228,6 +226,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_PIPE2: obj = new CPipe2(x, y); break;
 	case OBJECT_TYPE_UI: obj = new CUI(x, y); break;
 	case OBJECT_TYPE_NUMBER: obj = new CNumber(x, y); break;
+	case OBJECT_TYPE_BRICKFRAGMENT: obj = new CNumber(x, y); break;
 	case OBJECT_TYPE_PLATFORM:
 	{
 		float cell_width = (float)atof(tokens[3].c_str());
