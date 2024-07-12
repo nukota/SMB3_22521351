@@ -45,8 +45,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	if (teleport) 
 	{
 		teleport = false;
-		incave = true;
-		x = 2144; y = 350;
+		x = tx; y = ty;
 	}
 	if (CGame::GetInstance()->GetCurrentScene()->id == 1 && y > 192 && !incave) 
 		SetState(MARIO_STATE_DIE);
@@ -115,8 +114,8 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		LoseLife(e);
 	else if (dynamic_cast<CPipeAbove*>(e->obj))
 		OnCollisionWithPipeAbove(e);
-	//else if (dynamic_cast<CPipe2*>(e->obj))
-	//	OnCollisionWithPipe2(e);
+	else if (dynamic_cast<CPipe2*>(e->obj))
+		OnCollisionWithPipe2(e);
 	else if (dynamic_cast<CBrick*>(e->obj))
 		OnCollisionWithBrick(e);
 	else if (dynamic_cast<CBrick2*>(e->obj))
@@ -359,19 +358,20 @@ void CMario::OnCollisionWithWingKoopas(LPCOLLISIONEVENT e)
 
 void CMario::OnCollisionWithPipeAbove(LPCOLLISIONEVENT e)
 {
-	if (e->ny < 0 && state == MARIO_STATE_SIT)
+	if (e->ny < 0 && isSitting)
 	{
-		DebugOut(L"done this\n");
-		SetState(MARIO_STATE_TELEPORT);
+		SetState(MARIO_STATE_TELEPORT1);
 	}
 }
-/*
+
 void CMario::OnCollisionWithPipe2(LPCOLLISIONEVENT e)
 {
 	if (e->ny > 0 && state == MARIO_STATE_JUMP)
 	{
+	DebugOut(L"done this\n");
+		SetState(MARIO_STATE_TELEPORT2);
 	}
-}*/
+}
 
 void CMario::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 {
@@ -379,7 +379,7 @@ void CMario::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 	if (e->ny > 0 && state == MARIO_STATE_JUMP && level > MARIO_LEVEL_SMALL)
 	{
 		vx = -vx;
-		brick->Delete();
+		brick->SetState(BRICK_STATE_DESTROYED);
 	}
 }
 
@@ -681,11 +681,12 @@ void CMario::SetState(int state)
 
 	case MARIO_STATE_SIT:
 		if (isOnPlatform && level != MARIO_LEVEL_SMALL)
-		{
+		{	
+			y += MARIO_SIT_HEIGHT_ADJUST - 2;
 			state = MARIO_STATE_IDLE;
 			isSitting = true;
 			vx = 0; vy = 0.0f;
-			y += MARIO_SIT_HEIGHT_ADJUST - 4;
+			
 		}
 		break;
 
@@ -726,8 +727,17 @@ void CMario::SetState(int state)
 		fly = true;
 		break;
 	
-	case MARIO_STATE_TELEPORT:
+	case MARIO_STATE_TELEPORT1:
 		teleport = true;
+		incave = true;
+		tx = 2144;
+		ty = 300;
+		break;
+	case MARIO_STATE_TELEPORT2:
+		teleport = true;
+		incave = false;
+		tx = 2450;
+		ty = 120;
 		break;
 	}
 	if (state != MARIO_STATE_SLOWFALL && state != MARIO_STATE_FLY && state != MARIO_STATE_FLYDOWN) ay = MARIO_GRAVITY;

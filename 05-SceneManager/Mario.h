@@ -40,7 +40,8 @@
 #define MARIO_STATE_FLY				701
 #define MARIO_STATE_FLYDOWN				702
 
-#define MARIO_STATE_TELEPORT	800
+#define MARIO_STATE_TELEPORT1	800
+#define MARIO_STATE_TELEPORT2	801
 
 
 #pragma region ANIMATION_ID
@@ -114,6 +115,8 @@
 
 #define ID_ANI_MARIO_RACCOON_SLOWFALL_RIGHT 2710
 #define ID_ANI_MARIO_RACCOON_SLOWFALL_LEFT 2720
+
+#define ID_ANI_MARIO_RACCOON_SPIN 2800
 #pragma endregion
 
 #define GROUND_Y 160.0f
@@ -147,7 +150,8 @@ class CMario : public CGameObject
 {
 protected:
 	BOOLEAN isSitting;
-	bool teleport = false, incave = false;
+	bool teleport = false, incave = false, inspin = false;
+	float tx, ty;
 	float maxVx;
 	float ax;				// acceleration on x 
 	float ay;				// acceleration on y 

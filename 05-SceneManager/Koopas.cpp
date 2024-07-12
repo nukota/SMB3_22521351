@@ -45,6 +45,7 @@ void CKoopas::OnCollisionWith(LPCOLLISIONEVENT e)
 		vy = 0;
 		isOnPlatform = true;
 	}
+	bool kt = false;
 	if (state == KOOPAS_STATE_SPINNING) 
 	{
 		if (dynamic_cast<CKoopas*>(e->obj)) 
@@ -57,23 +58,25 @@ void CKoopas::OnCollisionWith(LPCOLLISIONEVENT e)
 			OnCollisionWithWingKoopas(e);
 		else if (dynamic_cast<CMysteryBox*>(e->obj))
 			OnCollisionWithMysteryBox(e);
-		else if (dynamic_cast<CBrick*>(e->obj))
+		else if (dynamic_cast<CBrick*>(e->obj)) {
 			OnCollisionWithBrick(e);
+			kt = true;
+		}
+			
 		else if (dynamic_cast<CBrick2*>(e->obj))
 			OnCollisionWithBrick2(e);
 	}
-	
 	if (e->obj->IsBlocking()) {
-	if (e->ny != 0)
+		if (e->ny != 0)
 		{
 			vy = 0;
 			isOnPlatform = true;
 		}
-		else if (e->nx != 0)
+		else if (e->nx != 0 && !kt)
 		{
 			vx = -vx;
 		}
-	}
+	}	
 }
 
 void CKoopas::OnCollisionWithGoomba(LPCOLLISIONEVENT e) 
@@ -121,7 +124,7 @@ void CKoopas::OnCollisionWithBrick2(LPCOLLISIONEVENT e)
 {
 	CBrick2* brick2 = (CBrick2*)(e->obj);
 	if (e->ny == 0) {
-		brick2->Delete();
+		//brick2->Delete();
 		vx = -vx;
 	}
 }
@@ -132,17 +135,13 @@ void CKoopas::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	if (y > 250) this->Delete();
 	vy += ay * dt;
 	vx += ax * dt;
-	if (state == KOOPAS_STATE_WALKING) {
-		if (border_left != 0 && x < border_left)
-		{
-			vx = abs(vx);
-		}
-		if (border_right != 0 && x > border_right)
-		{
-			vx = -abs(vx);
-		}
-	}
 
+	if (y > 186)
+		SetState(KOOPAS_STATE_DIE);
+
+	if (state == KOOPAS_STATE_IDLE && GetTickCount64() - standuptimer > 5000) {
+		SetState(KOOPAS_STATE_WALKING);
+	}
 	if (state == KOOPAS_STATE_WALKING && !settimer && vy > 0.05f)
 	{
 		y -= 2;
@@ -181,12 +180,15 @@ void CKoopas::SetState(int state)
 	switch (state)
 	{
 	case KOOPAS_STATE_WALKING:
+		if (state == KOOPAS_STATE_IDLE)
+			y -= 6;
 		vx = -KOOPAS_WALKING_SPEED;
 		break;
 	case KOOPAS_STATE_SPINNING:
 		y -= 4;
 		break;
 	case KOOPAS_STATE_IDLE:
+		standuptimer = GetTickCount64();
 		y -= 6;
 		vx = 0;
 		break;

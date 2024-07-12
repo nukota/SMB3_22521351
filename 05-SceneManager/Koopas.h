@@ -27,10 +27,7 @@ protected:
 	float ay;
 	bool isOnPlatform, settimer = false;
 
-	ULONGLONG timer = 0;
-
-	float border_left = 0;
-	float border_right = 0;
+	ULONGLONG timer = 0, standuptimer = 0;
 
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);

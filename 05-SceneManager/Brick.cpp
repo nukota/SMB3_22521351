@@ -20,7 +20,7 @@ void CBrick::GetBoundingBox(float &l, float &t, float &r, float &b)
 void CBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	if (settimer) {
-		if (GetTickCount64() - timer > 200) 
+		if (GetTickCount64() - timer > 50) 
 			this->Delete();
 		else if (index < 3 && !CreateSubObject) {
 			index++;
