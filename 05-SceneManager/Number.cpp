@@ -1,4 +1,5 @@
 #include "Number.h"
+#include "debug.h"
 
 void CNumber::Render()
 {
@@ -6,7 +7,6 @@ void CNumber::Render()
 	aniId = ID_ANI_NUMBER + num;
 	CAnimations* animations = CAnimations::GetInstance();
 	animations->Get(aniId)->Render(x, y);
-
 	//RenderBoundingBox();
 }
 

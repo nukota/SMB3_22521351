@@ -41,7 +41,16 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		untouchable_start = 0;
 		untouchable = 0;
 	}
-		
+	
+	if (teleport) 
+	{
+		teleport = false;
+		incave = true;
+		x = 2144; y = 350;
+	}
+	if (CGame::GetInstance()->GetCurrentScene()->id == 1 && y > 192 && !incave) 
+		SetState(MARIO_STATE_DIE);
+
 	isOnPlatform = false;
 
 	CCollision::GetInstance()->Process(this, dt, coObjects);
@@ -106,8 +115,8 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e)
 		LoseLife(e);
 	else if (dynamic_cast<CPipeAbove*>(e->obj))
 		OnCollisionWithPipeAbove(e);
-	else if (dynamic_cast<CPipe2*>(e->obj))
-		OnCollisionWithPipe2(e);
+	//else if (dynamic_cast<CPipe2*>(e->obj))
+	//	OnCollisionWithPipe2(e);
 	else if (dynamic_cast<CBrick*>(e->obj))
 		OnCollisionWithBrick(e);
 	else if (dynamic_cast<CBrick2*>(e->obj))
@@ -352,19 +361,17 @@ void CMario::OnCollisionWithPipeAbove(LPCOLLISIONEVENT e)
 {
 	if (e->ny < 0 && state == MARIO_STATE_SIT)
 	{
-		//temp
-		x = 2144; y = 250;
+		DebugOut(L"done this\n");
+		SetState(MARIO_STATE_TELEPORT);
 	}
 }
-
+/*
 void CMario::OnCollisionWithPipe2(LPCOLLISIONEVENT e)
 {
 	if (e->ny > 0 && state == MARIO_STATE_JUMP)
 	{
-		//temp
-		x = 2370; y = 160;
 	}
-}
+}*/
 
 void CMario::OnCollisionWithBrick(LPCOLLISIONEVENT e)
 {
@@ -701,7 +708,7 @@ void CMario::SetState(int state)
 		vx = 0;
 		ax = 0;
 		break;
-	
+
 	case MARIO_STATE_SLOWFALL:
 		if (isSitting) break;
 		slowfall = true;
@@ -715,8 +722,12 @@ void CMario::SetState(int state)
 		break;
 	case MARIO_STATE_FLYDOWN:
 		if (isSitting) break;
-			vy = MARIO_FLY_SPEED;
+		vy = MARIO_FLY_SPEED;
 		fly = true;
+		break;
+	
+	case MARIO_STATE_TELEPORT:
+		teleport = true;
 		break;
 	}
 	if (state != MARIO_STATE_SLOWFALL && state != MARIO_STATE_FLY && state != MARIO_STATE_FLYDOWN) ay = MARIO_GRAVITY;

@@ -40,6 +40,8 @@
 #define MARIO_STATE_FLY				701
 #define MARIO_STATE_FLYDOWN				702
 
+#define MARIO_STATE_TELEPORT	800
+
 
 #pragma region ANIMATION_ID
 
@@ -145,6 +147,7 @@ class CMario : public CGameObject
 {
 protected:
 	BOOLEAN isSitting;
+	bool teleport = false, incave = false;
 	float maxVx;
 	float ax;				// acceleration on x 
 	float ay;				// acceleration on y 

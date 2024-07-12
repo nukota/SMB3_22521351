@@ -23,10 +23,11 @@ void CUI::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	CGame::GetInstance()->GetCamPos(cx, cy);
 	x = cx + 153;
 	y = cy + 228;
-	if (index <= 9 && CreateSubObject) {
-		subObject = new CNumber(x, y, 0);
-		//number.push_back(*subObject);
-		CreateSubObject = true;
+	if (index <= 13 && !CreateSubObject) {
+		CNumber* cnum = new CNumber(x + index * 15, y, 0);
+		subObject = cnum;
+		number.push_back(*cnum);
+		//CreateSubObject = true;
 		index++;
 	}
 	CGameObject::Update(dt, coObjects);

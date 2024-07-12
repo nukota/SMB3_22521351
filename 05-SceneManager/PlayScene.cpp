@@ -382,8 +382,12 @@ void CPlayScene::Update(DWORD dt)
 		if (cx < 0) cx = 0;
 		if (cx > 2545) cx = 2545;
 	}
-	if (CGame::GetInstance()->GetCurrentScene()->id == 1 && cy < -40) {
-		CGame::GetInstance()->SetCamPos(cx, cy + 40);
+	if (CGame::GetInstance()->GetCurrentScene()->id == 1) {
+		if (cy < -40)
+			CGame::GetInstance()->SetCamPos(cx, cy + 40);
+		else if (cy > 100 && player->GetState() != MARIO_STATE_DIE)
+			CGame::GetInstance()->SetCamPos(cx, 204);
+		else CGame::GetInstance()->SetCamPos(cx,0);
 	}
 
 	else CGame::GetInstance()->SetCamPos(cx, 0);

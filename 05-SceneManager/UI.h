@@ -13,15 +13,10 @@
 
 class CUI : public CGameObject {
 protected:
-	vector<CGameObject> number = {};
+	vector<CNumber> number = {};
 	int index = 0;
 public:
-	CUI(float x, float y) : CGameObject(x, y) {
-		/*for (int i = 0; i < 13; i++) {
-			CNumber *Num = new CNumber(x, y);
-			number.push_back(*Num);
-		}*/
-	}
+	CUI(float x, float y) : CGameObject(x, y) {}
 	
 	void Render();
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
