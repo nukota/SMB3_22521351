@@ -43,6 +43,7 @@
 #define MARIO_STATE_TELEPORT1	800
 #define MARIO_STATE_TELEPORT2	801
 
+#define MARIO_STATE_SPIN	802
 
 #pragma region ANIMATION_ID
 
@@ -68,6 +69,8 @@
 #define ID_ANI_MARIO_BRACE_RIGHT 1000
 #define ID_ANI_MARIO_BRACE_LEFT 1001
 
+#define ID_ANI_MARIO_TELEPORT 1003
+
 #define ID_ANI_MARIO_DIE 999
 
 // SMALL MARIO
@@ -88,6 +91,8 @@
 
 #define ID_ANI_MARIO_SMALL_JUMP_RUN_RIGHT 1600
 #define ID_ANI_MARIO_SMALL_JUMP_RUN_LEFT 1601
+
+#define ID_ANI_MARIO_SMALL_TELEPORT 1700
 
 // RACCOON MARIO
 #define ID_ANI_MARIO_RACCOON_IDLE_RIGHT 2010
@@ -117,6 +122,8 @@
 #define ID_ANI_MARIO_RACCOON_SLOWFALL_LEFT 2720
 
 #define ID_ANI_MARIO_RACCOON_SPIN 2800
+#define ID_ANI_MARIO_RACCOON_TELEPORT 2900
+
 #pragma endregion
 
 #define GROUND_Y 160.0f
@@ -150,7 +157,7 @@ class CMario : public CGameObject
 {
 protected:
 	BOOLEAN isSitting;
-	bool teleport = false, incave = false, inspin = false;
+	bool teleport = false, incave = false, inspin = false, teleporting = false, settimer = false;
 	float tx, ty;
 	float maxVx;
 	float ax;				// acceleration on x 
@@ -158,7 +165,7 @@ protected:
 
 	int level; 
 	int untouchable; 
-	ULONGLONG untouchable_start;
+	ULONGLONG untouchable_start, timer;
 	
 	int coin; 
 
@@ -205,7 +212,7 @@ public:
 
 	int IsCollidable()
 	{ 
-		return (state != MARIO_STATE_DIE); 
+		return (state != MARIO_STATE_DIE && !teleport); 
 	}
 
 	int IsBlocking() { return (state != MARIO_STATE_DIE && untouchable==0); }

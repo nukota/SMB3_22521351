@@ -18,6 +18,7 @@ class CWingGoomba : public CGameObject
 protected:
 	float ax;
 	float ay;
+	bool isOnPlatform;
 
 	ULONGLONG timer, jump_timer;
 

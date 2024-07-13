@@ -20,11 +20,6 @@ void CWingGoomba::GetBoundingBox(float& left, float& top, float& right, float& b
 
 void CWingGoomba::OnNoCollision(DWORD dt)
 {
-	if (jump_timer > 1200) {
-		vy -= 0.25f;
-		jump_timer = 0;
-	}
-	else jump_timer += dt;
 	x += vx * dt;
 	y += vy * dt;
 };
@@ -34,7 +29,7 @@ void CWingGoomba::OnCollisionWith(LPCOLLISIONEVENT e)
 	if (e->ny < 0 && e->obj->IsStair())
 	{
 		vy = 0;
-		//isOnPlatform = true;
+		isOnPlatform = true;
 	}
 	if (!e->obj->IsBlocking()) return;
 	if (dynamic_cast<CWingGoomba*>(e->obj)) return;
@@ -42,6 +37,7 @@ void CWingGoomba::OnCollisionWith(LPCOLLISIONEVENT e)
 	if (e->ny != 0)
 	{
 		vy = 0;
+		isOnPlatform = true;
 	}
 	else if (e->nx != 0)
 	{
@@ -51,11 +47,17 @@ void CWingGoomba::OnCollisionWith(LPCOLLISIONEVENT e)
 
 void CWingGoomba::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
+	if (jump_timer > 2500 && isOnPlatform) {
+		vy -= 0.2f;
+		jump_timer = 0;
+	}
+	else jump_timer += dt;
 	vy += ay * dt;
 	vx += ax * dt;
 	if (state == WINGGOOMBA_STATE_DIE && GetTickCount64() - timer > 50) {
 		this->Delete();
 	}
+	isOnPlatform = false;
 	CGameObject::Update(dt, coObjects);
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 }

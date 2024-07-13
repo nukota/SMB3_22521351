@@ -77,7 +77,8 @@ void CSampleKeyHandler::KeyState(BYTE *states)
 		else if (mario->slowfall) 
 			mario->SetState(MARIO_STATE_SLOWFALL);
 	}
-		
+	if (game->IsKeyDown(DIK_A) && mario->GetLevel() == MARIO_LEVEL_RACCOON && mario->isOnPlatform)
+		mario->SetState(MARIO_STATE_SPIN);
 	if (game->IsKeyDown(DIK_RIGHT))
 	{
 		if (marioIcon != NULL) marioIcon->SetState(2);

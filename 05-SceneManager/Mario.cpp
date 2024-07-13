@@ -30,8 +30,11 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
 	CGame::GetInstance()->GetCurrentScene()->xMario = x;
 	CGame::GetInstance()->GetCurrentScene()->yMario = y;
-	vy += ay * dt;
-	vx += ax * dt;
+	if (!teleport) {
+		vy += ay * dt;
+		vx += ax * dt;
+	}
+	
 
 	if (abs(vx) > abs(maxVx)) vx = maxVx;
 
@@ -42,9 +45,10 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		untouchable = 0;
 	}
 	
-	if (teleport) 
+	if (teleport && GetTickCount64() - timer > 2000) 
 	{
 		teleport = false;
+		incave = !incave;
 		x = tx; y = ty;
 	}
 	if (CGame::GetInstance()->GetCurrentScene()->id == 1 && y > 192 && !incave) 
@@ -483,7 +487,9 @@ int CMario::GetAniIdSmall()
 int CMario::GetAniIdBig()
 {
 	int aniId = -1;
-	if (!isOnPlatform)
+	if (teleport)
+		aniId = ID_ANI_MARIO_TELEPORT;
+	else if (!isOnPlatform)
 	{
 		if (abs(ax) == MARIO_ACCEL_RUN_X)
 		{
@@ -540,6 +546,9 @@ int CMario::GetAniIdBig()
 int CMario::GetAniIdRaccoon()
 {
 	int aniId = -1;
+	if (teleport)
+		aniId = ID_ANI_MARIO_RACCOON_TELEPORT;
+	else
 	if (!isOnPlatform)
 	{
 		if (abs(vx) >= MARIO_ACCEL_SPEED)
@@ -637,31 +646,31 @@ void CMario::SetState(int state)
 	switch (state)
 	{
 	case MARIO_STATE_RUNNING_RIGHT:
-		if (isSitting) break;
+		if (isSitting || teleport) break;
 		maxVx = MARIO_ACCEL_SPEED;
 		ax = MARIO_ACCEL_RUN_X;
 		nx = 1;
 		break;
 	case MARIO_STATE_RUNNING_LEFT:
-		if (isSitting) break;
+		if (isSitting || teleport) break;
 		maxVx = -MARIO_ACCEL_SPEED;
 		ax = -MARIO_ACCEL_RUN_X;
 		nx = -1;
 		break;
 	case MARIO_STATE_WALKING_RIGHT:
-		if (isSitting) break;
+		if (isSitting || teleport) break;
 		maxVx = MARIO_WALKING_SPEED;
 		ax = MARIO_ACCEL_WALK_X;
 		nx = 1;
 		break;
 	case MARIO_STATE_WALKING_LEFT:
-		if (isSitting) break;
+		if (isSitting || teleport) break;
 		maxVx = -MARIO_WALKING_SPEED;
 		ax = -MARIO_ACCEL_WALK_X;
 		nx = -1;
 		break;
 	case MARIO_STATE_JUMP:
-		if (isSitting) break;
+		if (isSitting || teleport) break;
 		if (isOnPlatform)
 		{
 			if (abs(this->vx) == MARIO_ACCEL_SPEED)
@@ -691,7 +700,7 @@ void CMario::SetState(int state)
 		break;
 
 	case MARIO_STATE_SIT_RELEASE:
-		if (isSitting)
+		if (isSitting || teleport)
 		{
 			isSitting = false;
 			state = MARIO_STATE_IDLE;
@@ -711,36 +720,41 @@ void CMario::SetState(int state)
 		break;
 
 	case MARIO_STATE_SLOWFALL:
-		if (isSitting) break;
+		if (isSitting || teleport) break;
 		slowfall = true;
 		vy = MARIO_SLOWFALL_SPEED;
 		break;
 	case MARIO_STATE_FLY:
-		if (isSitting) break;
+		if (isSitting || teleport) break;
 		if (vy > -MARIO_FLY_SPEED)
 			vy = -MARIO_FLY_SPEED;
 		fly = true;
 		break;
 	case MARIO_STATE_FLYDOWN:
-		if (isSitting) break;
+		if (isSitting || teleport) break;
 		vy = MARIO_FLY_SPEED;
 		fly = true;
 		break;
 	
 	case MARIO_STATE_TELEPORT1:
+		if (teleport) break;
 		teleport = true;
-		incave = true;
+		timer = GetTickCount64();
+		vy = 0.02f;
 		tx = 2144;
 		ty = 300;
 		break;
 	case MARIO_STATE_TELEPORT2:
+		if (teleport) break;
 		teleport = true;
-		incave = false;
+		timer = GetTickCount64();
+		vy = -0.05f;
 		tx = 2450;
 		ty = 120;
 		break;
 	}
-	if (state != MARIO_STATE_SLOWFALL && state != MARIO_STATE_FLY && state != MARIO_STATE_FLYDOWN) ay = MARIO_GRAVITY;
+	if (state != MARIO_STATE_SLOWFALL && state != MARIO_STATE_FLY && state != MARIO_STATE_FLYDOWN && state != MARIO_STATE_TELEPORT1 && state != MARIO_STATE_TELEPORT2)
+		ay = MARIO_GRAVITY;
 	else ay = 0;
 	CGameObject::SetState(state);
 }
