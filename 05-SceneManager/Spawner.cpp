@@ -1,7 +1,17 @@
 #include "Spawner.h"
 
 
-CSpawner::CSpawner(float x, float y) {
+CSpawner::CSpawner(float x, float y, int type) {
+	switch (type) {
+	case 1: subObjects.push_back(1); break;
+	case 2:
+		subObjects.push_back(4);
+		subObjects.push_back(4);
+		subObjects.push_back(4);
+		break;
+	case 3: subObjects.push_back(5); break;
+	case 4: subObjects.push_back(3); break;
+	}
 }
 
 void CSpawner::Render() {
@@ -17,7 +27,7 @@ void CSpawner::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	if (end) return;
 	if (!start && CGame::GetInstance()->GetCurrentScene()->xMario + 180 >= this->x)
 	{
-		start = true; DebugOut(L"do!\n");
+		start = true;
 	}
 	if (start) {
 		if (index >= subObjects.size()) {
@@ -36,6 +46,8 @@ void CSpawner::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			subObject = new CWingGoomba(x, y); break;
 		case 4:
 			subObject = new CWingKoopas(x, y); break;
+		case 5:
+			subObject = new CGreenKoopas(x, y); break;
 		default:
 			subObject = new CGoomba(x, y); break;
 		}

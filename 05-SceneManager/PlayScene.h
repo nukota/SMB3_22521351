@@ -8,22 +8,10 @@
 #include "Goomba.h"
 #include "MysteryBox.h"
 #include "Bush.h"
-#include "Tree1.h"
-#include "Tree2.h"
-#include "Tree3.h"
-#include "Tree4.h"
+#include "Tree.h"
 #include "WarpPipe.h"
 #include "Cloud.h"
-#include "Stair0.h"
-#include "Stair1.h"
-#include "Stair2.h"
-#include "Stair3.h"
-#include "Stair4.h"
-#include "Stair5.h"
-#include "Stair6.h"
-#include "Stair7.h"
-#include "Stair8.h"
-#include "Stair9.h"
+#include "ColorBox.h"
 #include "Wood.h"
 #include "PipeBelow.h"
 #include "PipeAbove.h"
@@ -32,6 +20,7 @@
 #include "CoinFromBox.h"
 #include "MushRoom.h"
 #include "Koopas.h"
+#include "GreenKoopas.h"
 #include "WingGoomba.h"
 #include "WingKoopas.h"
 #include "Curtain.h"
@@ -44,10 +33,22 @@
 #include "PakkunFlower2.h"
 #include "PakkunFlower3.h"
 #include "Spawner.h"
-#include "Spawner1.h"
-#include "Spawner2.h"
-#include "Spawner3.h"	
-#include "Spawner4.h"
+#include "leaf.h"
+#include "River.h"
+#include "Path.h"
+#include "Rock.h"
+#include "Destination.h"
+#include "Border.h"
+#include "HammerBro.h"
+#include "MovingBush.h"
+#include "MarioIcon.h"
+#include "Brick2.h"
+#include "Pipe2.h"
+#include "Decoration.h"
+#include "SmileCloud.h"
+#include "UI.h"
+#include "Number.h"
+#include "BrickFragment.h"
 //#include "PakkunFlower1.h"
 
 
@@ -56,7 +57,7 @@ class CPlayScene: public CScene
 static CPlayScene* __instance;
 protected: 
 	// A play scene has to have player, right? 
-	LPGAMEOBJECT player;					
+	LPGAMEOBJECT player, playericon;					
 
 	vector<LPGAMEOBJECT> objects;
 
@@ -77,6 +78,7 @@ public:
 	virtual void Unload();
 
 	LPGAMEOBJECT GetPlayer() { return player; }
+	LPGAMEOBJECT GetPlayerIcon() { return playericon; }
 
 	void Clear();
 	void PurgeDeletedObjects();

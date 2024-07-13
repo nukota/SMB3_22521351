@@ -18,7 +18,7 @@ void CTitle::GetBoundingBox(float& l, float& t, float& r, float& b)
 
 void CTitle::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
-	if (y < 70) y += 0.25f * dt;
+	if (y < 80) y += 0.25f * dt;
 	else if (!createdSubObject)
 	{
 		subObject = new CTitleNumber(x, y);

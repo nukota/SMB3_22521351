@@ -20,3 +20,4 @@ height	240
 30 	textures\addition.png
 40	textures\black.png
 50	textures\intro.png
+60	textures\map.png

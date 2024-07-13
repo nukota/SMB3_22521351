@@ -11,7 +11,10 @@ CMysteryBox::CMysteryBox(float x, float y, int prize) : CGameObject(x, y) {
 	}
 	else if (prize == 2) {
 		subObject = new CMushRoom(x, y);
-		//subObject->SetPosition(x, y - 16);
+	}
+	else if (prize == 3) {
+		subObject = new CLeaf(x, y);
+		subObject->SetPosition(x, y - 16);
 	}
 	taken_start = -1;
 	SetState(MYSTERYBOX_STATE_FIRST);

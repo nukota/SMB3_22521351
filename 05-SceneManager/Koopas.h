@@ -3,7 +3,7 @@
 
 #define KOOPAS_GRAVITY 0.001f
 #define KOOPAS_WALKING_SPEED 0.05f
-#define KOOPAS_SPINNING_SPEED 0.15f
+#define KOOPAS_SPINNING_SPEED 0.25f
 
 #define KOOPAS_BBOX_WIDTH 16
 #define KOOPAS_BBOX_HEIGHT 26
@@ -13,6 +13,7 @@
 #define KOOPAS_STATE_IDLE 200
 #define KOOPAS_STATE_SPINNING 300
 #define KOOPAS_STATE_DIE 400
+#define KOOPAS_STATE_DIE_2 500
 
 #define ID_ANI_KOOPAS_WALKING_LEFT 37001
 #define ID_ANI_KOOPAS_WALKING_RIGHT 37002
@@ -24,15 +25,15 @@ class CKoopas : public CGameObject
 protected:
 	float ax;
 	float ay;
+	bool isOnPlatform, settimer = false;
 
-	float border_left = 0;
-	float border_right = 0;
+	ULONGLONG timer = 0, standuptimer = 0;
 
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
 	virtual void Render();
 
-	virtual int IsCollidable() { return 1; };
+	virtual int IsCollidable() { return !(state == KOOPAS_STATE_DIE_2); }
 	virtual int IsBlocking() { return 0; }
 	virtual void OnNoCollision(DWORD dt);
 	virtual bool DeleteOffCamera() { return 0; }
@@ -42,10 +43,12 @@ protected:
 	virtual void OnCollisionWithWingGoomba(LPCOLLISIONEVENT e);
 	virtual void OnCollisionWithKoopas(LPCOLLISIONEVENT e);
 	virtual void OnCollisionWithWingKoopas(LPCOLLISIONEVENT e);
+	virtual void OnCollisionWithMysteryBox(LPCOLLISIONEVENT e);
+	virtual void OnCollisionWithBrick(LPCOLLISIONEVENT e); 
+	virtual void OnCollisionWithBrick2(LPCOLLISIONEVENT e);
 
 public:
 	CKoopas(float x, float y);
-	CKoopas(float x, float y, float border_left, float border_right);
 	virtual void SpinLeft();
 	virtual void SpinRight();
 	virtual void SetState(int state);

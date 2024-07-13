@@ -24,8 +24,8 @@
 
 class CPrize : public CGameObject {
 protected:
-	ULONGLONG timer;
-	bool settimer = false;
+	ULONGLONG timer = 0;
+	bool settimer = false, activated = false;
 public:
 	CPrize(float x, float y) : CGameObject(x, y) { state = PRIZE_STATE_MUSHROOM; }
 	void Render();

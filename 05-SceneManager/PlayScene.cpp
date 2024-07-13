@@ -20,6 +20,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath):
 	CScene(id, filePath)
 {
 	player = NULL;
+	playericon = NULL;
 	key_handler = new CSampleKeyHandler(this);
 }
 
@@ -118,36 +119,48 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 
 		DebugOut(L"[INFO] Player object has been created!\n");
 		break;
+	case OBJECT_TYPE_MARIOICON: 
+		if (playericon != NULL)
+		{
+			DebugOut(L"[ERROR] MARIOICON object was created before!\n");
+			return;
+		}
+		obj = new CMarioIcon(x, y); 
+		playericon = (CMarioIcon*)obj; 
+
+		DebugOut(L"[INFO] PlayerIcon object has been created!\n");
+		break;
 	case OBJECT_TYPE_GOOMBA: obj = new CGoomba(x,y); break;
 	case OBJECT_TYPE_BRICK: obj = new CBrick(x,y); break;
 	case OBJECT_TYPE_COIN: obj = new CCoin(x, y); break;
 	case OBJECT_TYPE_MYSTERYBOX_COIN: obj = new CMysteryBox(x, y, 1); break;
 	case OBJECT_TYPE_MYSTERYBOX_MUSHROOM: obj = new CMysteryBox(x, y, 2); break;
-	case OBJECT_TYPE_TREE1: obj = new CTree1(x, y); break;
-	case OBJECT_TYPE_TREE2: obj = new CTree2(x, y); break;
-	case OBJECT_TYPE_TREE3: obj = new CTree3(x, y); break;
-	case OBJECT_TYPE_TREE4: obj = new CTree4(x, y); break;
+	case OBJECT_TYPE_MYSTERYBOX_LEAF: obj = new CMysteryBox(x, y, 3); break;
+	case OBJECT_TYPE_TREE1: obj = new CTree(x, y, 1); break;
+	case OBJECT_TYPE_TREE2: obj = new CTree(x, y, 2); break;
+	case OBJECT_TYPE_TREE3: obj = new CTree(x, y, 3); break;
+	case OBJECT_TYPE_TREE4: obj = new CTree(x, y, 4); break;
 	case OBJECT_TYPE_BUSH: obj = new CBush(x, y); break;
 	case OBJECT_TYPE_WARPPIPE: obj = new CWarpPipe(x, y); break;
 	case OBJECT_TYPE_CLOUD: obj = new CCloud(x, y); break;
-	case OBJECT_TYPE_STAIR0: obj = new CStair0(x, y); break;
-	case OBJECT_TYPE_STAIR1: obj = new CStair1(x, y); break;
-	case OBJECT_TYPE_STAIR2: obj = new CStair2(x, y); break;
-	case OBJECT_TYPE_STAIR3: obj = new CStair3(x, y); break;
-	case OBJECT_TYPE_STAIR4: obj = new CStair4(x, y); break;
-	case OBJECT_TYPE_STAIR5: obj = new CStair5(x, y); break;
-	case OBJECT_TYPE_STAIR6: obj = new CStair6(x, y); break;
-	case OBJECT_TYPE_STAIR7: obj = new CStair7(x, y); break;
-	case OBJECT_TYPE_STAIR8: obj = new CStair8(x, y); break;
-	case OBJECT_TYPE_STAIR9: obj = new CStair9(x, y); break;
+	case OBJECT_TYPE_COLORBOX0: obj = new CColorBox(x, y, 0); break;
+	case OBJECT_TYPE_COLORBOX1: obj = new CColorBox(x, y, 1); break;
+	case OBJECT_TYPE_COLORBOX2: obj = new CColorBox(x, y, 2); break;
+	case OBJECT_TYPE_COLORBOX3: obj = new CColorBox(x, y, 3); break;
+	case OBJECT_TYPE_COLORBOX4: obj = new CColorBox(x, y, 4); break;
+	case OBJECT_TYPE_COLORBOX5: obj = new CColorBox(x, y, 5); break;
+	case OBJECT_TYPE_COLORBOX6: obj = new CColorBox(x, y, 6); break;
+	case OBJECT_TYPE_COLORBOX7: obj = new CColorBox(x, y, 7); break;
+	case OBJECT_TYPE_COLORBOX8: obj = new CColorBox(x, y, 8); break;
+	case OBJECT_TYPE_COLORBOX9: obj = new CColorBox(x, y, 9); break;
+	case OBJECT_TYPE_COLORBOX10: obj = new CColorBox(x, y, 10); break;
 	case OBJECT_TYPE_WOOD: obj = new CWood(x, y); break;
 	case OBJECT_TYPE_PIPEBELOW: obj = new CPipeBelow(x, y); break;
 	case OBJECT_TYPE_PIPEABOVE: obj = new CPipeAbove(x, y); break;
 	case OBJECT_TYPE_BLACKBACKGROUND: obj = new CBlackBackground(x, y); break;
 	case OBJECT_TYPE_PRIZE: obj = new CPrize(x, y); break;
 	case OBJECT_TYPE_KOOPAS: obj = new CKoopas(x, y); break;
-	case OBJECT_TYPE_KOOPAS_1: obj = new CKoopas(x, y, x - 35, x + 35); break;
-	case OBJECT_TYPE_KOOPAS_2: obj = new CKoopas(x, y, x - 10, x + 10); break;
+	case OBJECT_TYPE_GREENKOOPAS: obj = new CGreenKoopas(x, y); break;
 	case OBJECT_TYPE_WINGGOOMBA: obj = new CWingGoomba(x, y); break;
 	case OBJECT_TYPE_WINGKOOPAS: obj = new CWingKoopas(x, y); break;
 	case OBJECT_TYPE_CURTAIN: obj = new CCurtain(x, y); break;
@@ -159,15 +172,63 @@ void CPlayScene::_ParseSection_OBJECTS(string line)
 	case OBJECT_TYPE_PAKKUNFLOWER1: obj = new CPakkun1(x, y); break;
 	case OBJECT_TYPE_PAKKUNFLOWER2: obj = new CPakkun2(x, y); break;
 	case OBJECT_TYPE_PAKKUNFLOWER3: obj = new CPakkun3(x, y); break;
-	case OBJECT_TYPE_SPAWNER: obj = new CSpawner(x, y); break;
-	case OBJECT_TYPE_SPAWNER1: obj = new CSpawner1(x, y); break;
-	case OBJECT_TYPE_SPAWNER2: obj = new CSpawner2(x, y); break;
-	case OBJECT_TYPE_SPAWNER3: obj = new CSpawner3(x, y); break;
-	case OBJECT_TYPE_SPAWNER4: obj = new CSpawner4(x, y); break;
-
+	case OBJECT_TYPE_SPAWNER: obj = new CSpawner(x, y, 0); break;
+	case OBJECT_TYPE_SPAWNER1: obj = new CSpawner(x, y, 1); break;
+	case OBJECT_TYPE_SPAWNER2: obj = new CSpawner(x, y,	2); break;
+	case OBJECT_TYPE_SPAWNER3: obj = new CSpawner(x, y, 3); break;
+	case OBJECT_TYPE_SPAWNER4: obj = new CSpawner(x, y, 4); break;
+	case OBJECT_TYPE_LEAF: obj = new CLeaf(x, y); break;
+	case OBJECT_TYPE_BORDER: obj = new CBorder(x, y); break;
+	case OBJECT_TYPE_MOVINGBUSH: obj = new CMovingBush(x, y); break;
+	case OBJECT_TYPE_ROCK: obj = new CRock(x, y); break;
+	case OBJECT_TYPE_PATH1: obj = new CPath(x, y, 1); break;
+	case OBJECT_TYPE_PATH2: obj = new CPath(x, y, 2); break;
+	case OBJECT_TYPE_PATH3: obj = new CPath(x, y, 3); break;
+	case OBJECT_TYPE_PATH4: obj = new CPath(x, y, 4); break;
+	case OBJECT_TYPE_PATH5: obj = new CPath(x, y, 5); break;
+	case OBJECT_TYPE_PATH6: obj = new CPath(x, y, 6); break;
+	case OBJECT_TYPE_RIVER1: obj = new CRiver(x, y, 1); break;
+	case OBJECT_TYPE_RIVER2: obj = new CRiver(x, y, 2); break;
+	case OBJECT_TYPE_RIVER3: obj = new CRiver(x, y, 3); break;
+	case OBJECT_TYPE_RIVER4: obj = new CRiver(x, y, 4); break;
+	case OBJECT_TYPE_RIVER5: obj = new CRiver(x, y, 5); break;
+	case OBJECT_TYPE_RIVER6: obj = new CRiver(x, y, 6); break;
+	case OBJECT_TYPE_RIVER7: obj = new CRiver(x, y, 7); break;
+	case OBJECT_TYPE_RIVER8: obj = new CRiver(x, y, 8); break;
+	case OBJECT_TYPE_RIVER9: obj = new CRiver(x, y, 9); break;
+	case OBJECT_TYPE_RIVER10: obj = new CRiver(x, y, 10); break;
+	case OBJECT_TYPE_RIVER11: obj = new CRiver(x, y, 11); break;
+	case OBJECT_TYPE_RIVER12: obj = new CRiver(x, y, 12); break;
+	case OBJECT_TYPE_RIVER13: obj = new CRiver(x, y, 13); break;
+	case OBJECT_TYPE_RIVER14: obj = new CRiver(x, y, 14); break;
+	case OBJECT_TYPE_RIVER15: obj = new CRiver(x, y, 15); break;
+	case OBJECT_TYPE_RIVER16: obj = new CRiver(x, y, 16); break;
+	case OBJECT_TYPE_DESTINATION1: obj = new CDestination(x, y, 1); break;
+	case OBJECT_TYPE_DESTINATION2: obj = new CDestination(x, y, 2); break;
+	case OBJECT_TYPE_DESTINATION3: obj = new CDestination(x, y, 3); break;
+	case OBJECT_TYPE_DESTINATION4: obj = new CDestination(x, y, 4); break;
+	case OBJECT_TYPE_DESTINATION5: obj = new CDestination(x, y, 5); break;
+	case OBJECT_TYPE_DESTINATION6: obj = new CDestination(x, y, 6); break;
+	case OBJECT_TYPE_DESTINATION7: obj = new CDestination(x, y, 7); break;
+	case OBJECT_TYPE_DESTINATION8: obj = new CDestination(x, y, 8); break;
+	case OBJECT_TYPE_DESTINATION9: obj = new CDestination(x, y, 9); break;
+	case OBJECT_TYPE_DESTINATION10: obj = new CDestination(x, y, 10); break;
+	case OBJECT_TYPE_DESTINATION11: obj = new CDestination(x, y, 11); break;
+	case OBJECT_TYPE_DESTINATION12: obj = new CDestination(x, y, 12); break;
+	case OBJECT_TYPE_DESTINATION13: obj = new CDestination(x, y, 13); break;
+	case OBJECT_TYPE_DESTINATION14: obj = new CDestination(x, y, 14); break;
+	case OBJECT_TYPE_DESTINATION15: obj = new CDestination(x, y, 15); break;
+	case OBJECT_TYPE_DECO1: obj = new CDecoration(x, y, 1); break;
+	case OBJECT_TYPE_DECO2: obj = new CDecoration(x, y, 2); break;
+	case OBJECT_TYPE_DECO3: obj = new CDecoration(x, y, 3); break;
+	case OBJECT_TYPE_BRICK2: obj = new CBrick2(x, y); break;
+	case OBJECT_TYPE_SMILECLOUD: obj = new CSmileCloud(x, y); break;
+	case OBJECT_TYPE_PIPE2: obj = new CPipe2(x, y); break;
+	case OBJECT_TYPE_UI: obj = new CUI(x, y); break;
+	case OBJECT_TYPE_NUMBER: obj = new CNumber(x, y); break;
+	case OBJECT_TYPE_BRICKFRAGMENT: obj = new CNumber(x, y); break;
 	case OBJECT_TYPE_PLATFORM:
 	{
-
 		float cell_width = (float)atof(tokens[3].c_str());
 		float cell_height = (float)atof(tokens[4].c_str());
 		int length = atoi(tokens[5].c_str());
@@ -304,6 +365,9 @@ void CPlayScene::Update(DWORD dt)
 		coObjects.push_back(objects[i]);
 	}
 	
+	// skip the rest if scene was already unloaded (Mario::Update might trigger PlayScene::Unload)
+	if (player == NULL) return;
+
 	// Update camera to follow mario
 	float cx, cy;
 	player->GetPosition(cx, cy);
@@ -312,13 +376,21 @@ void CPlayScene::Update(DWORD dt)
 	cx -= game->GetBackBufferWidth() / 2;
 	cy -= game->GetBackBufferHeight() / 2;
 
-	if (CGame::GetInstance()->GetCurrentScene()->id == 5) cx = 0;
+	
+	if (CGame::GetInstance()->GetCurrentScene()->id == 5 || CGame::GetInstance()->GetCurrentScene()->id == 2) cx = 0;
 	else {
 		if (cx < 0) cx = 0;
 		if (cx > 2545) cx = 2545;
 	}
-	
-	CGame::GetInstance()->SetCamPos(cx, 0.0f /*cy*/);
+	if (CGame::GetInstance()->GetCurrentScene()->id == 1) {
+		if (cy < -40)
+			CGame::GetInstance()->SetCamPos(cx, cy + 40);
+		else if (cy > 100 && player->GetState() != MARIO_STATE_DIE)
+			CGame::GetInstance()->SetCamPos(cx, 204);
+		else CGame::GetInstance()->SetCamPos(cx,0);
+	}
+
+	else CGame::GetInstance()->SetCamPos(cx, 0);
 
 	size_t i = 0;
 	while (i < objects.size())
@@ -326,9 +398,9 @@ void CPlayScene::Update(DWORD dt)
 		objects[i]->Update(dt, &coObjects);
 		
 		//delete objects that get out of camera
-		if (objects[i]->DeleteOffCamera()) {
-			if (objects[i]->x - 150 < cx || objects[i]->x + 150 > cx) {  DebugOut(L"delete object %f\n", objects[i]->x); objects[i]->Delete(); }
-		}
+		//if (objects[i]->DeleteOffCamera()) {
+		//	if (objects[i]->x - 150 < cx || objects[i]->x + 150 > cx) {  DebugOut(L"delete object %f\n", objects[i]->x); objects[i]->Delete(); }
+		//}
 
 		//spawn sub object
 		if (objects[i]->CreateSubObject) {
@@ -340,9 +412,6 @@ void CPlayScene::Update(DWORD dt)
 		}
 		i++;
 	}
-
-	// skip the rest if scene was already unloaded (Mario::Update might trigger PlayScene::Unload)
-	if (player == NULL) return; 
 
 	PurgeDeletedObjects();
 }
@@ -379,6 +448,7 @@ void CPlayScene::Unload()
 
 	objects.clear();
 	player = NULL;
+	playericon = NULL;
 
 	DebugOut(L"[INFO] Scene %d unloaded! \n", id);
 }

@@ -19,23 +19,17 @@
     <Filter Include="Source Files\BackGroundObjects">
       <UniqueIdentifier>{70000431-756b-45ef-9717-991f31e74370}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Stairs">
-      <UniqueIdentifier>{c56eacbe-7439-47b2-bcea-445c1dab59d3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Stairs">
-      <UniqueIdentifier>{3d50892c-57e4-44dd-958e-03a5c3a543d4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\FirstSceneObject">
       <UniqueIdentifier>{95953e54-4890-46b5-9e1e-d4d9f9690870}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\FirstSceneObject">
       <UniqueIdentifier>{cee9dee5-6700-44d5-a24c-d71ad9a30b49}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Spawners">
-      <UniqueIdentifier>{ecac3b3c-66bb-4ad3-b025-8f9386f4f250}</UniqueIdentifier>
+    <Filter Include="Header Files\Map">
+      <UniqueIdentifier>{96a3a042-074a-4a34-b527-85463eb3c29f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Spawners">
-      <UniqueIdentifier>{35b58243-dca4-4ebe-9ac8-6225e58607f1}</UniqueIdentifier>
+    <Filter Include="Source Files\Map">
+      <UniqueIdentifier>{17c28cb7-38f4-4bf2-8e8b-ab26c47f91b4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -108,50 +102,14 @@
     <ClCompile Include="WarpPipe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Tree1.cpp">
+    <ClCompile Include="Tree.cpp">
       <Filter>Source Files\BackGroundObjects</Filter>
     </ClCompile>
     <ClCompile Include="Bush.cpp">
       <Filter>Source Files\BackGroundObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Tree2.cpp">
-      <Filter>Source Files\BackGroundObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Tree3.cpp">
-      <Filter>Source Files\BackGroundObjects</Filter>
-    </ClCompile>
     <ClCompile Include="Cloud.cpp">
       <Filter>Source Files\BackGroundObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Stair0.cpp">
-      <Filter>Source Files\Stairs</Filter>
-    </ClCompile>
-    <ClCompile Include="Stair1.cpp">
-      <Filter>Source Files\Stairs</Filter>
-    </ClCompile>
-    <ClCompile Include="Stair2.cpp">
-      <Filter>Source Files\Stairs</Filter>
-    </ClCompile>
-    <ClCompile Include="Stair3.cpp">
-      <Filter>Source Files\Stairs</Filter>
-    </ClCompile>
-    <ClCompile Include="Stair4.cpp">
-      <Filter>Source Files\Stairs</Filter>
-    </ClCompile>
-    <ClCompile Include="Stair5.cpp">
-      <Filter>Source Files\Stairs</Filter>
-    </ClCompile>
-    <ClCompile Include="Stair7.cpp">
-      <Filter>Source Files\Stairs</Filter>
-    </ClCompile>
-    <ClCompile Include="Stair6.cpp">
-      <Filter>Source Files\Stairs</Filter>
-    </ClCompile>
-    <ClCompile Include="Stair8.cpp">
-      <Filter>Source Files\Stairs</Filter>
-    </ClCompile>
-    <ClCompile Include="Stair9.cpp">
-      <Filter>Source Files\Stairs</Filter>
     </ClCompile>
     <ClCompile Include="Wood.cpp">
       <Filter>Source Files</Filter>
@@ -161,9 +119,6 @@
     </ClCompile>
     <ClCompile Include="PipeAbove.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tree4.cpp">
-      <Filter>Source Files\BackGroundObjects</Filter>
     </ClCompile>
     <ClCompile Include="BlackBackground.cpp">
       <Filter>Source Files\BackGroundObjects</Filter>
@@ -204,9 +159,6 @@
     <ClCompile Include="fireball.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Spawner.cpp">
-      <Filter>Source Files\Spawners</Filter>
-    </ClCompile>
     <ClCompile Include="TitleNumber.cpp">
       <Filter>Source Files\FirstSceneObject</Filter>
     </ClCompile>
@@ -218,6 +170,60 @@
     </ClCompile>
     <ClCompile Include="BackgroundItems.cpp">
       <Filter>Source Files\FirstSceneObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Leaf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Spawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HammerBro.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="River.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Path.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Border.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Destination.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Rock.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingBush.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="MarioIcon.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="SmileCloud.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Brick2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pipe2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Decoration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Number.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BrickFragment.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -302,47 +308,11 @@
     <ClInclude Include="Bush.h">
       <Filter>Header Files\BackGroundObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Tree1.h">
+    <ClInclude Include="Tree.h">
       <Filter>Header Files\BackGroundObjects</Filter>
     </ClInclude>
     <ClInclude Include="Cloud.h">
       <Filter>Header Files\BackGroundObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Tree2.h">
-      <Filter>Header Files\BackGroundObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Tree3.h">
-      <Filter>Header Files\BackGroundObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Stair1.h">
-      <Filter>Header Files\Stairs</Filter>
-    </ClInclude>
-    <ClInclude Include="Stair2.h">
-      <Filter>Header Files\Stairs</Filter>
-    </ClInclude>
-    <ClInclude Include="Stair3.h">
-      <Filter>Header Files\Stairs</Filter>
-    </ClInclude>
-    <ClInclude Include="Stair4.h">
-      <Filter>Header Files\Stairs</Filter>
-    </ClInclude>
-    <ClInclude Include="Stair5.h">
-      <Filter>Header Files\Stairs</Filter>
-    </ClInclude>
-    <ClInclude Include="Stair6.h">
-      <Filter>Header Files\Stairs</Filter>
-    </ClInclude>
-    <ClInclude Include="Stair7.h">
-      <Filter>Header Files\Stairs</Filter>
-    </ClInclude>
-    <ClInclude Include="Stair8.h">
-      <Filter>Header Files\Stairs</Filter>
-    </ClInclude>
-    <ClInclude Include="Stair9.h">
-      <Filter>Header Files\Stairs</Filter>
-    </ClInclude>
-    <ClInclude Include="Stair0.h">
-      <Filter>Header Files\Stairs</Filter>
     </ClInclude>
     <ClInclude Include="Wood.h">
       <Filter>Header Files</Filter>
@@ -352,9 +322,6 @@
     </ClInclude>
     <ClInclude Include="PipeAbove.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tree4.h">
-      <Filter>Header Files\BackGroundObjects</Filter>
     </ClInclude>
     <ClInclude Include="BlackBackground.h">
       <Filter>Header Files\BackGroundObjects</Filter>
@@ -395,21 +362,6 @@
     <ClInclude Include="fireball.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Spawner.h">
-      <Filter>Header Files\Spawners</Filter>
-    </ClInclude>
-    <ClInclude Include="Spawner1.h">
-      <Filter>Header Files\Spawners</Filter>
-    </ClInclude>
-    <ClInclude Include="Spawner2.h">
-      <Filter>Header Files\Spawners</Filter>
-    </ClInclude>
-    <ClInclude Include="Spawner3.h">
-      <Filter>Header Files\Spawners</Filter>
-    </ClInclude>
-    <ClInclude Include="Spawner4.h">
-      <Filter>Header Files\Spawners</Filter>
-    </ClInclude>
     <ClInclude Include="Floor.h">
       <Filter>Header Files\FirstSceneObject</Filter>
     </ClInclude>
@@ -421,6 +373,63 @@
     </ClInclude>
     <ClInclude Include="BackgroundItems.h">
       <Filter>Header Files\FirstSceneObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GreenKoopas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Leaf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Spawner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingBush.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Path.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Rock.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Destination.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="HammerBro.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Border.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="River.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="MarioIcon.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="SmileCloud.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Decoration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pipe2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Number.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BrickFragment.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
